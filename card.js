@@ -6,7 +6,7 @@
     const dataKartu = [
     {
         status: "Primary Card",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin1')) || 1,
+        bintang: 1,
         gambar: "https://i.pinimg.com/736x/46/90/65/469065f2c575b4c3e086be6cc4a76035.jpg",
         icon: "lock_person",
         
@@ -20,7 +20,7 @@
     },
     {
         status: "Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin2')) || 1,
+        bintang: 1,
         gambar: "https://i.pinimg.com/1200x/92/41/92/924192b2cdbec6802e7fe4229e2e1bd9.jpg",
         icon: "lock_open",
         
@@ -34,7 +34,7 @@
     },
     {
         status: "Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin3')) || 1, 
+        bintang: 1,
         gambar: "https://i.pinimg.com/1200x/8e/a4/14/8ea414f41647e6b3c009fccd954c1945.jpg",
         icon: "lock_open",
         
@@ -49,7 +49,7 @@
     },
     {
         status: "Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin4')) || 1, 
+        bintang: 1,
         gambar: "https://i.pinimg.com/736x/66/d7/8e/66d78e904063baceaee8d3dbe82e4f09.jpg",
         icon: "lock_open",
         
@@ -64,7 +64,7 @@
     },
     {
         status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin5')) || 1, 
+        bintang: 1,
         gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
         icon: "lock_open",
         
@@ -78,328 +78,7 @@
         teksStatus: "Moderator",
         tanggalAktif: "10 Oktober 2026"
     },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin6')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
         
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin7')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin8')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin9')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin10')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin11')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin12')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin13')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin14')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin15')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin16')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin17')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin18')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin19')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin20')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin21')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin22')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin23')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin24')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-     {
-        status: "Not Available",
-        bintang: parseInt(localStorage.getItem('userStarsSync_admin25')) || 1, 
-        gambar: "https://i.pinimg.com/1200x/55/40/6f/55406f94197b85c43673c56bad4d8aa2.jpg",
-        icon: "lock_open",
-        
-        username: "",
-        password: "",  // Kosongkan password untuk menandakan "Not Available"
-        halamanTujuan: "galeri.html",
-        apiDrive: API_DRIVE_UTAMA,
-        
-        // === KONFIGURASI MANUAL ADMIN ===
-        tingkatDasar: "regular", 
-        teksStatus: "Moderator",
-        tanggalAktif: "10 Oktober 2026"
-    },
-    
-    
     // Lanjutkan untuk kartu lainnya...
 ];
 
@@ -509,60 +188,6 @@ function attemptAccess(validUser, validPass, targetUrl, apiUrl, bTingkat, bStatu
 // Menutup modal login 
 function closeModal() { document.getElementById('auth-modal').classList.remove('show'); }
 
-async function handleLogin(event) {
-    event.preventDefault();
-    
-    const inputUser = document.getElementById('username').value.trim();
-    const inputPass = document.getElementById('password').value;
-    const pesanError = document.getElementById('error-msg');
-    const tombolLogin = event.target.querySelector('button');
-
-    // 1. Cari data user di dataKartu
-    const dataUser = dataKartu.find(u => u.username === inputUser);
-    if (!dataUser) {
-        pesanError.style.display = 'block';
-        pesanError.textContent = "Username tidak terdaftar!";
-        return;
-    }
-    
-    tombolLogin.textContent = "Mengecek...";
-    tombolLogin.disabled = true;
-
-    try {
-        // 2. Hash password dengan SHA-256
-        const hashedPass = await hashPasswordSHA256(inputPass);
-        
-        // 3. Tembak ke server Code.gs
-        const urlServer = `${dataUser.apiDrive}?action=login&username=${inputUser}&password=${hashedPass}`;
-        const response = await fetch(urlServer, { method: 'GET', redirect: 'follow' });
-        const result = await response.json();
-
-        if (result.status === 'success') {
-            // 4. SIMPAN SEMUA KUNCI KE LOCALSTORAGE
-            localStorage.setItem("statusLogin", "berhasil");
-            localStorage.setItem("userAktif", result.username);
-            localStorage.setItem("apiDriveAktif", dataUser.apiDrive);
-            localStorage.setItem("sessionToken", result.token);
-            
-            // Simpan konfigurasi kartu
-            localStorage.setItem("basePaketManual_" + inputUser, dataUser.tingkatDasar);
-            if (dataUser.teksStatus) localStorage.setItem("teksStatusManual_" + inputUser, dataUser.teksStatus);
-            
-            // Pindah ke galeri.html
-            window.location.href = dataUser.halamanTujuan;
-        } else {
-            pesanError.style.display = 'block';
-            pesanError.textContent = result.message || "Username atau Sandi salah!";
-        }
-    } catch (error) {
-        console.error("Error Login:", error);
-        pesanError.style.display = 'block';
-        pesanError.textContent = "Gagal terhubung ke server. Pastikan koneksi aman.";
-    } finally {
-        tombolLogin.textContent = "Log In";
-        tombolLogin.disabled = false;
-    }
-}
 
 // =========================================================================
 // 4. EFEK GESER (DRAG) & PENCARIAN
@@ -636,8 +261,9 @@ if (searchInput) {
 }
 
 // Perintah otomatis menjalankan pencetak kartu saat web dibuka
-document.addEventListener('DOMContentLoaded', () => {
-    muatSemuaKartu();
+document.addEventListener('DOMContentLoaded', async () => {
+    await sinkronisasiKartuGlobal(); // Wajib pakai 'await' agar menunggu data server selesai ditarik
+    // Hapus muatSemuaKartu() di sini karena akan dipanggil dari dalam sinkronisasiKartuGlobal()
 });
 
 // Mesin Enkripsi SHA-256 bawaan Browser (Web Crypto API)
@@ -647,4 +273,96 @@ async function hashPasswordSHA256(text) {
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// MENGAMBIL DATA GLOBAL DAN MENYIMPAN STATUS PAKET KE MEMORI KARTU
+async function sinkronisasiKartuGlobal() {
+    const wadah = document.getElementById('wadah-kartu');
+    if (wadah) {
+        wadah.innerHTML = "<p style='color:white; text-align:center; width:100%; padding-top:20px;'>Menyinkronkan data server...</p>";
+    }
+
+    try {
+        // --- PERBAIKAN: Menambahkan &t=${Date.now()} untuk memaksa browser menarik data terbaru (anti-cache) ---
+        const response = await fetch(`${API_DRIVE_UTAMA}?action=getUsersStatus&t=${Date.now()}`);
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            const dataServer = result.data;
+            
+            dataKartu.forEach(kartu => {
+                if (kartu.username && dataServer[kartu.username]) {
+                    // Pastikan bintang dipaksa menjadi angka
+                    kartu.bintang = parseInt(dataServer[kartu.username].bintang) || 1;
+                    kartu.paketServer = dataServer[kartu.username].paket; 
+                }
+            });
+        }
+    } catch (e) {
+        console.error("Gagal terhubung ke database pusat.", e);
+    }
+    
+    // PASTIKAN BARIS INI ADA DI SINI, BUKAN DI LUAR FUNGSI
+    muatSemuaKartu(); 
+}
+
+// MENYUNTIKKAN DATA DARI SERVER KE HP SAAT LOGIN BERHASIL
+async function handleLogin(event) {
+    event.preventDefault();
+    
+    const inputUser = document.getElementById('username').value.trim();
+    const inputPass = document.getElementById('password').value;
+    const pesanError = document.getElementById('error-msg');
+    const tombolLogin = event.target.querySelector('button');
+
+    const dataUser = dataKartu.find(u => u.username === inputUser);
+    if (!dataUser) {
+        pesanError.style.display = 'block';
+        pesanError.textContent = "Username tidak terdaftar!";
+        return;
+    }
+    
+    tombolLogin.textContent = "Mengecek...";
+    tombolLogin.disabled = true;
+
+    try {
+        const hashedPass = await hashPasswordSHA256(inputPass);
+        
+        const urlServer = `${dataUser.apiDrive}?action=login&username=${inputUser}&password=${hashedPass}`;
+        const response = await fetch(urlServer, { method: 'GET', redirect: 'follow' });
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            localStorage.setItem("statusLogin", "berhasil");
+            localStorage.setItem("userAktif", result.username);
+            localStorage.setItem("apiDriveAktif", dataUser.apiDrive);
+            localStorage.setItem("sessionToken", result.token);
+            
+            localStorage.setItem("basePaketManual_" + inputUser, dataUser.tingkatDasar);
+            if (dataUser.teksStatus) localStorage.setItem("teksStatusManual_" + inputUser, dataUser.teksStatus);
+            
+            // --- KUNCI SINKRONISASI: SET STATUS PAKET DI HP BERDASARKAN SERVER ---
+            if (dataUser.paketServer !== undefined) { 
+                if (dataUser.paketServer !== 'Free') {
+                    localStorage.setItem('paketAktif_' + result.username, dataUser.paketServer);
+                    localStorage.setItem('paketExpired_' + result.username, Date.now() + (30 * 24 * 60 * 60 * 1000)); 
+                } else {
+                    localStorage.setItem('paketAktif_' + result.username, 'Free');
+                    localStorage.removeItem('paketExpired_' + result.username);
+                }
+            }
+            
+            window.location.href = dataUser.halamanTujuan;
+        } else {
+            pesanError.style.display = 'block';
+            pesanError.textContent = result.message || "Username atau Sandi salah!";
+        }
+    } catch (error) {
+        console.error("Error Login:", error);
+        pesanError.style.display = 'block';
+        pesanError.textContent = "Gagal terhubung ke server. Pastikan koneksi aman.";
+    } finally {
+        tombolLogin.textContent = "Log In";
+        tombolLogin.disabled = false;
+    }
 }
