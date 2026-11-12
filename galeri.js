@@ -872,13 +872,6 @@ function prosesPembayaranSukses() {
     setTimeout(() => { tutupModalQRIS(); terapkanPaketSaatIni(); tampilkanNotifikasi(`Paket ${paketPending} aktif selama 30 Hari!`, "success"); }, 1500);
 }
 
-function simulasiPaketFree() {
-    localStorage.setItem('paketAktif_' + USERNAME_AKTIF, 'Free');
-    localStorage.removeItem('paketExpired_' + USERNAME_AKTIF);
-    terapkanPaketSaatIni(); tutupModalUpgrade();
-    tampilkanNotifikasi("Berhasil mereset kembali ke paket Free!", "success");
-}
-
 function terapkanPaketSaatIni() {
     const paket = localStorage.getItem('paketAktif_' + USERNAME_AKTIF) || 'Free';
     const expired = localStorage.getItem('paketExpired_' + USERNAME_AKTIF);
@@ -905,6 +898,13 @@ function terapkanPaketSaatIni() {
     }
     
     localStorage.setItem('userStarsSync_' + USERNAME_AKTIF, bCard);
+
+    // --- TAMBAHAN KUNCI: LAPOR KE SERVER (SHOPEE STYLE) ---
+    // Diam-diam mengirim data bintang terbaru ke server tanpa merusak UI Galeri
+    try {
+        fetch(`${API_DRIVE_AKTIF}?action=updatePackage&username=${USERNAME_AKTIF}&paket=${encodeURIComponent(paket)}&bintang=${bCard}&t=${Date.now()}`, { method: 'GET', mode: 'no-cors' });
+    } catch(e) {}
+    // -------------------------------------------------------
 
     const mLoved = document.getElementById('menu-loved'), mFoto = document.getElementById('menu-foto'), mVideo = document.getElementById('menu-video');
     if (mLoved) {
@@ -977,3 +977,62 @@ document.addEventListener('keydown', e => {
         if (e.key === 'ArrowRight') nextMedia(); else if (e.key === 'ArrowLeft') prevMedia(); else if (e.key === 'Escape') closePhoto(); 
     }
 });
+
+async function konfirmasiSelesai() {
+    const btn = document.getElementById('btn-konfirmasi-qris'); 
+    if(!btn) return;
+    
+    btn.disabled = true; 
+    btn.style.pointerEvents = 'none'; 
+    btn.innerHTML = `Memverifikasi ke Server...`; 
+    btn.style.backgroundColor = '#f59e0b'; 
+
+    let bintangBaru = 1;
+    if (paketPending === 'Standar') bintangBaru = 4;
+    else if (paketPending === 'Tingkat lanjut') bintangBaru = 5;
+
+    try {
+        // Lempar data paket ke Server (Database Google)
+        const updateUrl = `${API_DRIVE_AKTIF}?action=updatePackage&username=${USERNAME_AKTIF}&paket=${encodeURIComponent(paketPending)}&bintang=${bintangBaru}&t=${Date.now()}`;
+        await fetch(updateUrl, { method: 'GET', mode: 'no-cors' });
+
+        btn.innerHTML = `Pembayaran Berhasil!`; 
+        btn.style.backgroundColor = '#10b981'; 
+        
+        // PENGAMANAN LOKAL: Timpa nilai bintang agar sinkron dengan server
+        localStorage.setItem('paketAktif_' + USERNAME_AKTIF, paketPending);
+        localStorage.setItem('paketExpired_' + USERNAME_AKTIF, Date.now() + (30 * 24 * 60 * 60 * 1000));
+        localStorage.setItem('userStarsSync_' + USERNAME_AKTIF, bintangBaru); // WAJIB ADA AGAR TIDAK TERTINGGAL
+
+        setTimeout(async () => { 
+            tutupModalQRIS(); 
+            // Panggil ulang fungsi yang bertanya ke server agar UI diperbarui
+            await terapkanPaketSaatIni(); 
+            tampilkanNotifikasi(`Paket ${paketPending} aktif! Bintang ter-update global.`, "success"); 
+        }, 1500);
+
+    } catch (error) {
+        tampilkanNotifikasi("Gagal menyinkronkan data ke server.", "error");
+        btn.innerHTML = `Coba Lagi`; 
+        btn.disabled = false;
+        btn.style.pointerEvents = 'auto'; 
+    }
+}
+
+async function simulasiPaketFree() {
+    try {
+        // Melaporkan reset data langsung ke server (Global Sync) dengan anti-cache
+        await fetch(`${API_DRIVE_AKTIF}?action=updatePackage&username=${USERNAME_AKTIF}&paket=Free&bintang=1&t=${Date.now()}`, { method: 'GET', mode: 'no-cors' });
+        
+        // PENGAMANAN LOKAL: Reset nilai bintang dan paket
+        localStorage.setItem('paketAktif_' + USERNAME_AKTIF, 'Free');
+        localStorage.removeItem('paketExpired_' + USERNAME_AKTIF);
+        localStorage.setItem('userStarsSync_' + USERNAME_AKTIF, 1); // WAJIB ADA
+        
+        tutupModalUpgrade();
+        await terapkanPaketSaatIni(); 
+        tampilkanNotifikasi("Berhasil mereset kembali ke paket Free secara Global!", "success");
+    } catch(e) {
+        tampilkanNotifikasi("Gagal melapor ke server.", "error");
+    }
+}
