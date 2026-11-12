@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Private</title>
+    <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Pemanggil Ikon Google Material -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="galeri.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <!-- Ganti 3 titik (dot) sebelumnya dengan kode ini -->
+                <div id="bintang-status-kiri" class="bintang-premium" title="Tier Saat Ini">
+                    ★☆☆☆☆
+                </div>
+            
+            <div class="user-profile" onclick="bukaProfil()">
+                <div class="avatar" id="sidebar-avatar" style="background-color: #ddd; background-size: cover; background-position: center;"></div>
+                <div class="user-info">
+                    <h4 id="nama-user-sidebar">Loading...</h4>
+                    <p id="teks-status-user">Status: Loading...</p>
+                    <p id="teks-aktif-sejak">Aktif Sejak: Loading...</p> <!-- Tambahkan ID ini -->
+                </div>
+            </div>
+            
+
+            <div class="sidebar-menu"> 
+                <div class="menu-item" onclick="fungsiLogout()">
+                    <span class="material-symbols-outlined icon">logout</span> Keluar
+                </div>
+
+                <div class="menu-item" id="menu-home" onclick="bukaTab('home')">
+                    <span class="material-symbols-outlined icon">home</span> Menu
+                </div>
+
+                <div class="menu-item" id="menu-foto" onclick="bukaTab('foto')">
+                    <span class="material-symbols-outlined icon">image</span> Foto
+                </div>
+
+                <div class="menu-item" id="menu-video" onclick="bukaTab('video')">
+                    <span class="material-symbols-outlined icon">play_circle</span> Video
+                </div>
+                
+                <div class="menu-item" id="menu-loved" onclick="bukaTab('loved')">
+                    <span class="material-symbols-outlined icon">favorite</span> Suka
+                </div>
+
+                <div class="menu-item" id="menu-trash" onclick="bukaTab('trash')">
+                <span class="material-symbols-outlined icon">auto_delete</span> Sampah
+            </div>
+
+                <!-- INDIKATOR STORAGE -->
+                <div class="storage-item">
+                    <div class="storage-title">
+                        <span class="material-symbols-outlined icon">storage</span> Storage
+                    </div>
+                    <div class="storage-bar-container">
+                        <div class="storage-bar-bg">
+                            <div class="storage-bar-fill" id="storage-fill"></div>
+                        </div>
+                        <div class="storage-info-row">
+                            <span class="storage-text" id="storage-text">0 MB of 15 GB</span>
+                            <span class="storage-percent" id="storage-percent">0%</span>
+                        </div>
+                    </div>
+                </div>
+        </aside>
+        
+
+        <!-- KONTEN UTAMA -->
+        <main class="main-content">
+        <header style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 3rem;">
+            
+            <!-- POSISI KIRI: Tombol Upgrade (Ditempatkan manual agar selalu muncul) -->
+            <div id="area-upgrade-galeri">
+                <button onclick="bukaModalUpgrade()" class="btn-upgrade-premium">Upgrade Paket</button>
+            </div>
+
+            <!-- POSISI KANAN: Tombol Tema & Upload -->
+            <div style="display: flex; align-items: center; gap: 15px; margin-left: auto;">
+                <div id="upload-warning" class="upload-warning">⚠️ Maksimal 10 file!</div>
+                
+                <button id="theme-toggle" class="btn-theme" onclick="toggleTheme()" title="Ubah Tema">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                </button>
+                
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .mp4" style="display: none;" multiple>
+                <button class="btn-upload" id="btn-upload-main" onclick="document.getElementById('fileInput').click()">
+                    <span class="material-symbols-outlined">cloud_upload</span> <span id="text-upload">Upload File</span> <span class="plus">+</span>
+                </button>
+            </div>
+
+        </header>
+
+            <!-- TAB HOME -->
+            <section id="tab-home" class="recent-photos-section" style="display: none;">
+                <div class="section-header">
+                    <select id="sort-home" class="sort-dropdown">
+                        <option value="new">RECENT FILES (Terbaru)</option>
+                        <option value="old">OLDER FILES (Terlama)</option>
+                    </select>
+                </div>
+                <div class="pesan-kosong" style="display: none; text-align: center; padding: 40px; color: #888; font-size: 14px;">Tidak ada file.</div>
+                <div class="photo-grid"></div>
+            </section>
+
+            <!-- TAB FOTO -->
+            <section id="tab-foto" class="recent-photos-section" style="display: none;">
+                <div class="section-header">
+                    <select id="sort-foto" class="sort-dropdown">
+                        <option value="new">RECENT PHOTOS (Terbaru)</option>
+                        <option value="old">OLDER PHOTOS (Terlama)</option>
+                    </select>
+                </div>
+                <div class="pesan-kosong" style="display: none; text-align: center; padding: 40px; color: #888; font-size: 14px;">Tidak ada file foto.</div>
+                <div class="photo-grid"></div>
+            </section>
+
+            <!-- TAB VIDEO -->
+            <section id="tab-video" class="recent-photos-section" style="display: none;">
+                <div class="section-header">
+                    <select id="sort-video" class="sort-dropdown">
+                        <option value="new">RECENT VIDEOS (Terbaru)</option>
+                        <option value="old">OLDER VIDEOS (Terlama)</option>
+                    </select>
+                </div>
+                <div class="pesan-kosong" style="display: none; text-align: center; padding: 40px; color: #888; font-size: 14px;">Tidak ada file video.</div>
+                <div class="photo-grid"></div>
+            </section>
+
+            <!-- TAB LOVED -->
+            <section id="tab-loved" class="recent-photos-section" style="display: none;">
+                <div class="section-header">
+                    <select id="sort-loved" class="sort-dropdown">
+                        <option value="new">LOVED FILES (Terbaru)</option>
+                        <option value="old">OLDER LOVED (Terlama)</option>
+                    </select>
+                </div>
+                <div class="pesan-kosong" style="display: none; text-align: center; padding: 40px; color: #888; font-size: 14px;">Belum ada file yang disukai.</div>
+                <div class="photo-grid" id="loved-grid"></div>
+            </section>
+
+        <!-- TAB TRASH (SAMPAH) -->
+        <div id="tab-trash" style="display: none;">
+            
+            <!-- Barisan Atas: Judul (Kiri) dan Tombol Hapus (Kanan) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; width: 100%;">
+                
+                <!-- Teks menggunakan warna gelap secara default untuk Mode Terang -->
+                <div style="display: flex; align-items: baseline; gap: 15px;">
+                    <h2 style="margin: 0; font-family: 'Inter', sans-serif; color: #0f172a;">Folder Sampah</h2>
+                    <span style="font-size: 0.9rem; color: #64748b; font-weight: 500;">File otomatis di hapus dalam 30 hari</span>
+                </div>
+
+                <!-- BUNGKUSAN BARU: Menyatukan teks animasi dan tombol di sisi kanan -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+            
+            <!-- Teks Animasi (Tersembunyi secara default) -->
+            <span id="trash-confirm-text" style="color: #ef4444; font-weight: 600; opacity: 0; transform: translateX(20px); transition: all 0.3s ease-in-out; pointer-events: none;">
+                Apakah Anda Yakin?
+            </span>
+            
+            <!-- Tombol Asli Anda (Hanya ID dan span teks yang disesuaikan untuk JS) -->
+            <button id="btn-kosongkan-sampah" onclick="kosongkanSampah()" class="btn-trash">
+                <span class="material-symbols-outlined">delete_forever</span> 
+                <span id="trash-btn-text">Kosongkan Sampah</span>
+            </button>
+            
+        </div>
+
+            </div>
+
+            <!-- Area Konten -->
+            <p class="pesan-kosong" style="margin-top: 20px;">Tidak ada file di tempat sampah.</p>
+            <div class="photo-grid" style="display: none;"></div>
+            
+        </div>
+
+        </main>
+    </div>
+
+           
+
+    <!-- === MODAL PEMBESAR FOTO & VIDEO === -->
+    <div id="photo-viewer" class="photo-overlay">
+        <!-- Tombol Tutup (X) -->
+        <span class="close-viewer" onclick="closePhoto()">×</span>
+    
+        <div class="photo-container">
+            <img id="full-image" src="" alt="Full View" style="display: none;">
+            <video id="full-video" src="" controls style="display: none;"></video>
+            
+            <!-- ACTION BAR NORMAL TUNGGAL -->
+            <div class="action-bar" id="normal-action-bar">
+                <!-- Tooltip Hapus -->
+                <div id="delete-tooltip" class="delete-tooltip">Apakah di hapus?</div>
+                
+                <span class="material-symbols-outlined action-btn" onclick="deleteMedia()" title="Hapus">delete</span>
+                <span class="material-symbols-outlined action-btn" id="btn-love" onclick="toggleLove()" title="Sukai">favorite</span>
+                <a id="download-btn" href="" download class="material-symbols-outlined action-btn" title="Unduh">download</a>
+            </div>
+        </div>
+
+
+        <!-- Panah Navigasi Kiri -->
+        <span class="nav-arrow left" onclick="prevMedia()">&#10094;</span>
+
+
+        <!-- Panah Navigasi Kanan -->
+        <span class="nav-arrow right" onclick="nextMedia()">&#10095;</span>
+    </div>
+
+
+        <!-- MODAL UPGRADE PAKET -->
+    <!-- PERBAIKAN: Ganti 'display: none' dengan menghapusnya, CSS yang urus sembunyinya -->
+    <div id="upgradeModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" onclick="tutupModalUpgrade()">×</button>
+
+            <div class="pricing-container">
+                <!-- Kartu 1: Default/Starter -->
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price"><span>Rp.</span>0<span>/unlimited</span></div>
+                    <p class="desc">Paket free.</p>
+                    <button id="btn-paket-free" class="btn-tier-outline" onclick="simulasiPaketFree()">Paket saat ini</button>
+                    <ul class="features">
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 5GB</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 15GB (syarat tertentu)</li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span> <span class="teks-coret">Akses ke fitur dasar</span></li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span> <span class="teks-coret">Mendukung pengembang</span></li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span> <span class="teks-coret">Akses ke fitur suka</span></li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span> <span class="teks-coret">Mendapatkan gelar di leaderboard</span></li>
+                    </ul>
+                </div>
+
+                <!-- Kartu 2: Professional (Paket 1 - Disorot) -->
+                <div class="pricing-card highlighted">
+                    <div class="badge">Rekomendasi</div>
+                    <h3>Standar</h3>
+                    <div class="price"><span>Rp.</span>5.999<span>/30 Hari</span></div>
+                    <p class="desc">Paket ini memberikan akses ke fitur dasar dan mendukung pengembang.</p>
+                    <button id="btn-paket-standar" class="btn-tier-solid" onclick="bayarPaketQRIS('Standar', 'Rp 5.999')">Beli paket ini</button>
+                    <ul class="features">
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 5GB</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 15GB (satu kali)</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Akses ke fitur dasar</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Mendukung pengembang</li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span><span class="teks-coret"> Akses ke fitur suka</span></li>
+                        <li class="fitur-silang"><span class="material-symbols-outlined icon-cross">close</span> <span class="teks-coret">Mendapatkan gelar di leaderboard</span></li>
+                    </ul>
+                </div>
+
+                <!-- Kartu 3: Enterprise (Paket 2) -->
+                <div class="pricing-card">
+                    <h3>Tingkat lanjut</h3>
+                    <div class="price"><span>Rp.</span>10.999<span>/30 Hari</span></div>
+                    <p class="desc">Paket ini menambahkan gelar di leaderboard dan sangat mendukung pengembang.</p>
+                    <button id="btn-paket-lanjut" class="btn-tier-outline" onclick="bayarPaketQRIS('Tingkat lanjut', 'Rp 10.999')">Beli paket ini</button>
+                    <ul class="features">
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 5GB</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Penyimpanan 15GB</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Akses ke fitur dasar</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Mendukung pengembang</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Akses ke fitur suka</li>
+                        <li><span class="material-symbols-outlined icon-check">check</span> Mendapatkan gelar di leaderboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PEMBAYARAN QRIS -->
+    <div id="qrisModal" class="modal-overlay">
+        <!-- Kita set max-width kecil agar pop-upnya pas untuk gambar barcode -->
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <button class="close-btn" onclick="tutupModalQRIS()">×</button>
+            
+            <h3 style="margin-bottom: 10px;">Pembayaran QRIS</h3>
+            <p style="color: #666; margin-bottom: 20px;">
+                Paket: <strong id="qris-paket-nama">...</strong><br>
+                Total: <strong id="qris-paket-harga">...</strong>
+            </p>
+            
+            <!-- GANTI 'gambar-qris-kamu.jpg' DENGAN NAMA FILE FOTO QRIS ASLI MILIKMU -->
+            <img src="" alt="Scan QRIS" style="width: 100%; max-width: 250px; border-radius: 10px; margin: 0 auto; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            
+            <p style="font-size: 0.85rem; color: #888; margin-top: 20px;">Silakan scan QR Code di atas menggunakan aplikasi e-Wallet atau M-Banking Anda.</p>
+            
+            <div id="qris-timer-text" style="color: #94a3b8; font-size: 0.95rem; margin-top: 15px;">Menunggu pembayaran... (01:00)</div>
+        </div>
+    </div>
+
+
+    
+    <script src="galeri.js"></script>
+
+</body>
+</html>

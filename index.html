@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Shared Storage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+
+    <!-- NAVBAR -->
+    <nav>
+        <ul class="nav-links">
+         <!-- Hapus menu lama, sisakan satu untuk Disclaimer -->
+      <li><a href="#" onclick="openDisclaimerModal()">Disclaimer</a></li>
+        </ul>
+       
+        <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="window.open('https://wa.me/6282244671256', '_blank')">Chat Admin</button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="tag" onclick="openUpdateModal()" style="cursor: pointer;">
+        <span class="dot"></span> Apa Yang Baru?
+        </div>
+
+        <h1>Mari Kita Simpan Semua<br>Foto Random Kamu 24/7</h1>
+        <p>Dari pada kamu lupakan apa yang kamu lakukan, mending simpan disini gratis.</p>
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="smoothNavigate ('card.html')">Personal</button>
+            <button class="btn btn-secondary" onclick="window.location.href='feed.html'">Global</button>
+        </div>
+    </header>
+
+    <!-- LOGO TICKER -->
+    <section class="client-logos">
+        <span>AndhikaSP</span>
+        <span>-</span>
+        <span>-</span>
+        <span>-</span>
+        <span>-</span>
+        <span>-</span>
+        <span>-</span>
+    </section>
+
+        <div class="text-slider-container">
+    
+    <!-- Slide 1 -->
+    <div class="slide-block active">
+        <p>Teman sejati itu yang selalu ada pas kita lagi susah.</p>
+        <p>Bukan yang cuma nongol pas lagi butuh doang.</p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-block">
+        <p>Nongkrong bareng nggak perlu di tempat kafe mahal.</p>
+        <p>Yang penting obrolannya nyambung dan bikin ngakak seharian.</p>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-block">
+        <p>Sahabat itu yang berani negur tajam kalau kita salah.</p>
+        <p>Bukan yang manis di depan tapi ngomongin di belakang.</p>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide-block">
+        <p>Nggak usah gengsi buat minta tolong sama sahabat sendiri.</p>
+        <p>Mereka justru bakal seneng banget kalau merasa dibutuhin.</p>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide-block">
+        <p>Pertemanan awet itu nggak harus tiap hari ketemuan.</p>
+        <p>Tapi pas sekalinya ketemu, rasanya kayak nggak pernah pisah.</p>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide-block">
+        <p>Nyari temen buat seru-seruan bareng itu gampang banget.</p>
+        <p>Tapi nyari yang mau dengerin curhatan jam 2 pagi itu langka.</p>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide-block">
+        <p>Temen beneran itu hapal banget semua sifat jelek kita.</p>
+        <p>Tapi anehnya, dia tetep milih buat nongkrong bareng kita.</p>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide-block">
+        <p>Kalau udah klop, diem-dieman aja nggak kerasa canggung.</p>
+        <p>Rasanya tetep nyaman walaupun masing-masing sibuk main HP.</p>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide-block">
+        <p>Kenangan paling gila biasanya terjadi pas bareng sahabat.</p>
+        <p>Hal receh di pinggir jalan aja bisa jadi bahan ketawa berjam-jam.</p>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide-block">
+        <p>Sahabat sejati nggak akan pernah nikung temennya sendiri.</p>
+        <p>Mereka tau batasan dan selalu jaga perasaan satu sama lain.</p>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide-block">
+        <p>Terkadang keluarga yang paling deket itu justru sahabat.</p>
+        <p>Karena kita sendiri yang milih mereka buat masuk di hidup kita.</p>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide-block">
+        <p>Temen yang asik itu yang nggak gampang baperan.</p>
+        <p>Diledekin kayak gimana juga malah balik ngeledek lebih parah.</p>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide-block">
+        <p>Kalau lagi kumpul, biasain HP itu disimpen di kantong.</p>
+        <p>Hargain momen kebersamaan yang makin ke sini makin susah didapet.</p>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide-block">
+        <p>Beda pendapat sampai adu mulut sama sahabat itu hal biasa.</p>
+        <p>Yang penting besoknya udah saling sapa dan baikan lagi.</p>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide-block">
+        <p>Sahabat itu ibarat tempat sampah paling aman buat keluh kesah.</p>
+        <p>Dia bakal dengerin lu ngomel tanpa banyak nge-judge.</p>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide-block">
+        <p>Ketawa bareng circle yang pas itu obat stres paling ampuh.</p>
+        <p>Capek kerja atau tugas seharian bisa langsung ilang gitu aja.</p>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide-block">
+        <p>Temen yang pelit ilmu dan info itu mending dijauhin pelan-pelan.</p>
+        <p>Sahabat sejati pasti bakal ngajak maju dan sukses bareng-bareng.</p>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide-block">
+        <p>Jangan pernah perhitungan soal uang jajan sama sahabat.</p>
+        <p>Solidaritas dan kebersamaan itu harganya jauh lebih mahal.</p>
+    </div>
+
+    <!-- Slide 19 -->
+    <div class="slide-block">
+        <p>Sahabat yang baik bakal selalu support semua mimpi positif lu.</p>
+        <p>Dia orang pertama yang bakal tepuk tangan pas lu berhasil.</p>
+    </div>
+
+    <!-- Slide 20 -->
+    <div class="slide-block">
+        <p>Punya temen dikit tapi solid itu rasanya jauh lebih tenang.</p>
+        <p>Daripada punya sirkel besar tapi pada fake semua isinya.</p>
+    </div>
+
+    <!-- Slide 21 -->
+    <div class="slide-block">
+        <p>Temen rasa saudara itu emang beneran ada di dunia nyata.</p>
+        <p>Rumah dia udah berasa kayak basecamp dan rumah kita sendiri.</p>
+    </div>
+
+    <!-- Slide 22 -->
+    <div class="slide-block">
+        <p>Kalau mau tau sifat asli temen, coba ajak dia jalan jauh.</p>
+        <p>Di momen capek itu bakal keliatan banget karakter aslinya.</p>
+    </div>
+
+    <!-- Slide 23 -->
+    <div class="slide-block">
+        <p>Sahabat itu ibarat cermin buat ngeliat diri kita sendiri.</p>
+        <p>Kalau lu baik, otomatis lingkungan pertemanan lu juga bakal baik.</p>
+    </div>
+
+    <!-- Slide 24 -->
+    <div class="slide-block">
+        <p>Jangan sampai lupa daratan kalau lagi kasmaran sama pacar.</p>
+        <p>Inget temen yang selalu nemenin lu pas lagi jomblo dan merana.</p>
+    </div>
+
+    <!-- Slide 25 -->
+    <div class="slide-block">
+        <p>Berantem karena masalah sepele sama sahabat itu wajar banget.</p>
+        <p>Justru bumbu-bumbu itu yang bikin ikatan pertemanan makin kuat.</p>
+    </div>
+
+    <!-- Slide 26 -->
+    <div class="slide-block">
+        <p>Sahabat yang punya selera humor receh itu aset berharga.</p>
+        <p>Harinya bakal kerasa hampa dan sepi kalau dia lagi absen nongkrong.</p>
+    </div>
+
+    <!-- Slide 27 -->
+    <div class="slide-block">
+        <p>Temen yang sering ngutang tapi pura-pura lupa pas ditagih itu nyebelin.</p>
+        <p>Ujung-ujungnya kebiasaan itu yang bakal ngerusak pertemanan sendiri.</p>
+    </div>
+
+    <!-- Slide 28 -->
+    <div class="slide-block">
+        <p>Sahabat yang paling ngeselin biasanya yang paling bikin kangen.</p>
+        <p>Kalau dia nggak ikut kumpul, pasti suasana rasanya ada yang kurang.</p>
+    </div>
+
+    <!-- Slide 29 -->
+    <div class="slide-block">
+        <p>Cuma sahabat yang tau kode rahasia dari lirikan mata kita.</p>
+        <p>Nggak perlu ngomong sepatah kata pun, dia udah paham maksudnya.</p>
+    </div>
+
+    <!-- Slide 30 -->
+    <div class="slide-block">
+        <p>Temen yang suportif nggak bakal pernah sirik liat lu maju duluan.</p>
+        <p>Dia malah bakal ikut bangga dan termotivasi buat sukses juga.</p>
+    </div>
+
+    <!-- Slide 31 -->
+    <div class="slide-block">
+        <p>Pertemanan yang sehat itu tentang saling melengkapi kekurangan.</p>
+        <p>Bukannya malah adu gengsi dan saling ngejatuhin satu sama lain.</p>
+    </div>
+
+    <!-- Slide 32 -->
+    <div class="slide-block">
+        <p>Sahabat yang baik itu yang selalu ngingetin buat ibadah.</p>
+        <p>Ngajak bandel bareng, tapi juga selalu ngajak tobat bareng.</p>
+    </div>
+
+    <!-- Slide 33 -->
+    <div class="slide-block">
+        <p>Temen yang asik diajak diskusi dan deep talk itu beneran langka.</p>
+        <p>Bisa ngomongin rencana masa depan sampai teori konspirasi paling absurd.</p>
+    </div>
+
+    <!-- Slide 34 -->
+    <div class="slide-block">
+        <p>Pas lagi sakit, sahabat yang pertama kali jenguk itu the best banget.</p>
+        <p>Bawa martabak atau es kopi aja udah bikin mood langsung naik.</p>
+    </div>
+
+    <!-- Slide 35 -->
+    <div class="slide-block">
+        <p>Temen yang doyan ngaret itu kadang emang bikin emosi jiwa.</p>
+        <p>Tapi anehnya, kita tetep aja rela sabar nungguin dia dateng.</p>
+    </div>
+
+    <!-- Slide 36 -->
+    <div class="slide-block">
+        <p>Sahabat sejati nggak akan pernah nyebarin aib kita ke orang lain.</p>
+        <p>Rahasia tergelap kita dijamin aman seratus persen di tangan dia.</p>
+    </div>
+
+    <!-- Slide 37 -->
+    <div class="slide-block">
+        <p>Punya temen di kosan yang jago masak itu sebuah anugerah.</p>
+        <p>Apalagi di tanggal tua, rasanya nikmat banget bisa numpang makan.</p>
+    </div>
+
+    <!-- Slide 38 -->
+    <div class="slide-block">
+        <p>Temen yang stay pas kita lagi down itu pahlawan tanpa jubah.</p>
+        <p>Kehadiran dia doang udah cukup buat bikin hati kita jadi tenang.</p>
+    </div>
+
+    <!-- Slide 39 -->
+    <div class="slide-block">
+        <p>Pertemanan yang awet dari zaman sekolah itu biasanya paling solid.</p>
+        <p>Soalnya mereka udah tau masa-masa paling cupu dan alay kita.</p>
+    </div>
+
+    <!-- Slide 40 -->
+    <div class="slide-block">
+        <p>Sahabat nggak pernah capek dengerin curhatan patah hati yang diulang-ulang.</p>
+        <p>Walaupun dalem hatinya dia sebenernya udah eneg denger nama mantan lu.</p>
+    </div>
+
+    <!-- Slide 41 -->
+    <div class="slide-block">
+        <p>Temen yang sering ngasih saran pedes itu biasanya yang paling peduli.</p>
+        <p>Dia cuma nggak mau ngeliat lu jatuh ke lubang kesalahan yang sama.</p>
+    </div>
+
+    <!-- Slide 42 -->
+    <div class="slide-block">
+        <p>Kalau lagi hangout santai, jangan asik foto-foto doang buat bikin story.</p>
+        <p>Nikmati ngobrol langsungnya, momen itu yang bakal lu kangenin nanti.</p>
+    </div>
+
+    <!-- Slide 43 -->
+    <div class="slide-block">
+        <p>Temen yang suka tiba-tiba bayarin makan itu kayak titipan malaikat.</p>
+        <p>Biasanya kita cuma bisa doain rezekinya dia makin lancar dan berkah.</p>
+    </div>
+
+    <!-- Slide 44 -->
+    <div class="slide-block">
+        <p>Sahabat yang beda banget selera musiknya tetep bisa nyambung asik.</p>
+        <p>Yang penting pas di dalam mobil playlist lagunya gantian muternya.</p>
+    </div>
+
+    <!-- Slide 45 -->
+    <div class="slide-block">
+        <p>Punya temen yang jalan pikirannya sefrekuensi itu bener-bener seru.</p>
+        <p>Baru aja kita mau ngomong sesuatu, eh dia udah ngomong duluan.</p>
+    </div>
+
+    <!-- Slide 46 -->
+    <div class="slide-block">
+        <p>Jangan pernah sungkan buat bilang makasih ke sahabat terdekat lu.</p>
+        <p>Apresiasi sekecil apa pun bisa bikin hubungan pertemanan makin hangat.</p>
+    </div>
+
+    <!-- Slide 47 -->
+    <div class="slide-block">
+        <p>Temen yang rela jemput hujan-hujanan pas kita lagi butuh itu langka.</p>
+        <p>Jangan pernah nyia-nyiain orang yang mau berkorban kayak gini.</p>
+    </div>
+
+    <!-- Slide 48 -->
+    <div class="slide-block">
+        <p>Seiring bertambahnya umur, sirkel pertemanan kita pasti bakal mengecil.</p>
+        <p>Tapi yang tersisa nanti cuma mereka yang bener-bener berkualitas.</p>
+    </div>
+
+    <!-- Slide 49 -->
+    <div class="slide-block">
+        <p>Temen yang suka nyorakin pas kita malu itu biasanya sahabat sejati.</p>
+        <p>Habis puas ngetawain, baru deh dia bakal maju buat bantuin kita.</p>
+    </div>
+
+    <!-- Slide 50 -->
+    <div class="slide-block">
+        <p>Uang emang bisa beli banyak hal buat bikin kita bahagia.</p>
+        <p>Tapi uang nggak akan pernah bisa beli kesetiaan dari seorang teman.</p>
+    </div>
+
+</div>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section">
+        <div class="features-header">
+            <div class="features-title-box">
+                <div class="tag">
+                    <span class="dot"></span> Demo yang kemungkinan di tambahkan
+                </div>
+                <h2>Top 1-3<br>Berdasarkan Aktivitas Bulan Ini</h2>
+            </div>
+            <p class="features-desc">Anda bisa melihat top 1 2 3 di bawah ini berdasarkan aktivitas bulan ini.</p>
+        </div>
+
+        <div class="features-content">
+            <div class="feature-list">
+                <div class="feature-item" onclick="changeMockup('Buyer')">Sering upload</div>
+                <div class="feature-item" onclick="changeMockup('Matters')">Aktif di global</div>
+                <div class="feature-item" onclick="changeMockup('Forward')"> Yang upgrade</div>
+                <div class="feature-item active" onclick="changeMockup('Understanding')">Teman admin</div>
+            </div>
+            <div class="feature-mockup" id="mockup-view">
+                <p>Coming soon</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === TAMBAHAN: Modal / Kotak Floating Pembaruan === -->
+<div id="update-modal" class="modal-overlay">
+    <div class="update-box">
+        <h2>Riwayat Pembaruan</h2>
+
+        <!-- Area konten yang bisa di-scroll -->
+        <div class="update-content">
+            <div class="update-version">
+                <h3>Pembaruan V1.3</h3>
+                <ul>
+                    <li>Memperbaiki beberapa bug kecil.</li>
+                    <li>Membuat tata letak lebih responsif.</li>
+                    <li>Menambahkan kartu sejumlah 3.</li>
+                    <li>membuat fitur password.</li>
+                </ul>
+            </div>
+
+            <div class="update-version">
+                <h3>Pembaruan V1.2</h3>
+                <ul>
+                    <li>Menambahkan fitur pencarian slide yang interaktif.</li>
+                    <li>Efek gambar membesar (hover) pada semua kartu.</li>
+                    <li>Memperbaiki masalah background yang kosong saat dimuat.</li>
+                    <li>Penyesuaian batas scroll menjadi presisi.</li>
+                </ul>
+            </div>
+
+            <div class="update-version">
+                <h3>Pembaruan V1.1</h3>
+                <ul>
+                    <li>Merombak tata letak slider menjadi drag-to-scroll.</li>
+                    <li>Menambahkan fitur login untuk setiap slide foto secara mandiri.</li>
+                    <li>Merubah desain login menjadi modal popup glassmorphism.</li>
+                </ul>
+            </div>
+
+            <div class="update-version">
+                <h3>Pembaruan V1.0</h3>
+                <ul>
+                    <li>Membuat Tata Letak Pertama.</li>
+                    <li>Menambahkan tombol-tombol.</li>
+                    <li>Membuat Desain Sesuai Keinginan.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- === KOTAK FLOATING DISCLAIMER === -->
+            <div id="disclaimer-modal" class="modal-overlay">
+             <div class="update-box">
+              <h2>Disclaimer</h2>
+        
+                <div class="update-content">
+                 <div class="update-version">
+                <h3>Pemberitahuan Penting!</h3>
+                <ul>
+                    <li>Semua foto dan aset visual di dalam situs ini adalah hak cipta dari masing-masing pemilik aslinya.</li>
+                    <li>Situs ini dibuat khusus untuk penyimpanan Foto/Video random orang.</li>
+                    <li>Kami tidak bertanggung jawab atas segala bentuk penyalahgunaan informasi yang terdapat pada halaman ini.</li>
+                    <li>Situs ini murni buat keseruan saja jika anda tidak mau menyimpan foto random di hp.</li>
+                    <li>Bebas perpendapat apapun tanpa penyerangan personal.</li>
+                    <li>setiap bintang memiliki tingkatan nya:</li>
+                    <li>★ default</li>
+                    <li>★★ normal</li>
+                    <li>★★★ regular</li>
+                    <li>★★★★ member</li>
+                    <li>★★★★★ VIP member</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Nonaktifkan klik kanan
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Nonaktifkan tombol shortcut F12, Ctrl+U, Ctrl+Shift+I
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123) return false; // F12
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+    };
+</script>
+
+    <!-- Menghubungkan file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

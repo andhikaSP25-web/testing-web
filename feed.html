@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global - Shared Storage</title>
+    <link rel="stylesheet" href="feed.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tambahan Link Ikon Google Material -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- OVERLAY LOGIN GOOGLE -->
+<div id="login-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+    <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 350px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+        <h2 style="margin: 0 0 10px 0; color: #1e293b;">Bergabung ke Global</h2>
+        <p style="color: #64748b; font-size: 14px; margin-bottom: 25px;">Login untuk mulai mengunggah, menyukai, dan berkomentar.</p>
+        
+        <!-- WADAH TOMBOL GOOGLE ASLI -->
+        <div id="google-btn-container" style="display: flex; justify-content: center;"></div>
+        
+        <button onclick="tutupLogin()" style="margin-top: 20px; background: none; border: none; color: #94a3b8; cursor: pointer; font-weight: 500;">Nanti saja</button>
+    </div>
+</div>
+
+    <div class="app-container">
+        
+        <!-- KOLOM KIRI: Menu Utama -->
+        <aside class="left-sidebar">
+            <div class="sidebar-header" style="padding: 10px 15px 25px 15px; border-bottom: 1px solid #e2e8f0; margin-bottom: 20px;">
+            <!-- Tulisan Besar (Global) -->
+            <h1 style="font-size: 32px; font-weight: 800; color: #1e293b; margin: 0; letter-spacing: -1px;">Global</h1>
+            
+            <!-- Tulisan Kecil -->
+            <p style="font-size: 13px; font-weight: 500; color: #64748b; margin: 4px 0 0 0;">Shared Storage For Everyone</p>
+        </div>
+            
+            <div class="menu-section">
+                <h3>Main Menu</h3>
+                <!-- Ikon bawaan diganti menjadi Google Material -->
+                <ul class="menu-list">
+                    <!-- Tambahkan id pada masing-masing li -->
+                    <li id="menu-post" class="active" onclick="gantiTab('post', this)"><span class="material-symbols-outlined">grid_on</span> Post <span class="badge">12</span></li>
+                    <li id="menu-reel" onclick="gantiTab('reel', this)"><span class="material-symbols-outlined">movie</span> Reel</li>
+                    <li id="menu-comment" onclick="gantiTab('comment', this)"><span class="material-symbols-outlined">comment</span> Comment</li>
+                    <li id="menu-like" onclick="gantiTab('like', this)"><span class="material-symbols-outlined">favorite</span> Like</li>
+                    <li id="menu-profile" onclick="gantiTab('profile', this)"><span class="material-symbols-outlined">person</span> Profile</li>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0px;">
+                    <li id="menu-kembali" onclick="window.history.back()" style="color: #ef4444;">
+                        <span class="material-symbols-outlined">arrow_back</span> Kembali
+                </ul>
+            </div>
+        </aside>
+
+       <main class="main-content" id="main-area">
+    
+    <!-- Kolom Pencarian (Tampil di semua layar) -->
+    <div class="search-bar-container" style="position: sticky; top: 20px; z-index: 100; background: white; padding: 12px 20px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px;">
+        <span class="material-symbols-outlined" style="color: #64748b;">search</span>
+        <input type="text" id="searchFeed" placeholder="Cari postingan..." style="border: none; outline: none; width: 100%; font-size: 1rem; color: #334155; background: transparent;">
+    </div>
+
+    <!-- ANIMASI LOADING (Melayang / Floating Window) -->
+    <div id="loading-spinner" style="display: none; position: fixed; top: 110px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- TAB 1: POST (Foto) -->
+    <!-- TAB 1: POST (Foto) -->
+    <div id="tab-post" class="content-tab">
+        
+        <!-- Postingan 1: Kota/Cityscape -->
+        <div class="post-card">
+            <div class="post-header">
+            <!-- Tambahkan cursor: pointer dan onclick -->
+            <img src="https://i.pravatar.cc/150?img=5" alt="Profile" class="profile-pic" style="cursor: pointer;" onclick="lihatProfil('Sarah Lestari', 'sarah.ls', 'https://i.pravatar.cc/150?img=5', 'Pecinta senja dan ombak sore hari.', false)">
+            <div class="post-info">
+                <div class="user-meta">
+                    <!-- Tambahkan cursor: pointer dan onclick -->
+                    <span class="username" style="cursor: pointer;" onclick="lihatProfil('Sarah Lestari', 'sarah.ls', 'https://i.pravatar.cc/150?img=5', 'Pecinta senja dan ombak sore hari.', false)">Sarah Lestari</span>
+                    <span class="date">• 5h</span>
+                </div>
+                <span class="location">Bali, Indonesia</span>
+            </div>
+            <button class="more-btn">• • •</button>
+        </div>
+            <div class="post-body">
+                <p style="margin-bottom: 12px; font-size: 15px; color: #334155;">Suasana sibuk di pusat kota. Tetap semangat! 🏙️🔥</p>
+                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80" alt="Post Image" class="post-image">
+            </div>
+
+
+            <div class="post-actions">
+            <div class="action-left">
+                <!-- Perhatikan perubahan menjadi (this) -->
+                <button class="action-btn" onclick="aksiLike(this)">
+                    <span class="material-symbols-outlined">favorite</span> Like
+                </button>
+                <button class="action-btn" onclick="aksiKomentar(this)">
+                    <span class="material-symbols-outlined">chat_bubble</span> Comment
+                </button>
+            </div>
+            <div class="action-right">
+                <button class="action-btn download-btn" onclick="aksiUnduh(this)">
+                    <span class="material-symbols-outlined">download</span> Unduh
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: REEL (Video) -->
+    <div id="tab-reel" class="content-tab" style="display: none;">
+        <div class="post-card">
+            <div class="post-header">
+                <img src="https://i.pravatar.cc/150?img=15" alt="Profile" class="profile-pic">
+                <div class="post-info">
+                    <div class="user-meta"><span class="username">Tech Channel</span><span class="date">• 1h</span></div>
+                </div>
+            </div>
+            <div class="post-body">
+                <!-- Contoh Video Dummy -->
+                <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls style="width: 100%; border-radius: 8px;"></video>
+            </div>
+           <div class="post-actions">
+            <div class="action-left">
+                <!-- Sama persis seperti di Post -->
+                <button class="action-btn" onclick="aksiLike(this)">
+                    <span class="material-symbols-outlined">favorite</span> Like
+                </button>
+                <button class="action-btn" onclick="aksiKomentar(this)">
+                    <span class="material-symbols-outlined">chat_bubble</span> Comment
+                </button>
+            </div>
+            <div class="action-right">
+                <!-- Fungsi Unduh kini otomatis mengenali video -->
+                <button class="action-btn download-btn" onclick="aksiUnduh(this)">
+                    <span class="material-symbols-outlined">download</span> Unduh
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: COMMENT HISTORY -->
+    <div id="tab-comment" class="content-tab" style="display: none;">
+        <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Riwayat Komentar</h3>
+        <div class="history-item">
+            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=200&q=80" alt="Post">
+            <div class="history-text">
+                <p>Anda berkomentar: <em>"Fotonya keren banget!"</em></p>
+                <span class="date">3 hari yang lalu</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: LIKE HISTORY -->
+    <div id="tab-like" class="content-tab" style="display: none;">
+        <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Postingan Disukai</h3>
+        <div class="history-item">
+            <img src="https://i.pravatar.cc/150?img=11" alt="Profile">
+            <div class="history-text">
+                <p>Anda menyukai postingan dari <strong>Ray Hammond</strong></p>
+                <span class="date">Kemarin</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB KUNJUNGAN PROFIL (Melihat Akun Orang Lain) -->
+    <div id="tab-profil-kunjungan" class="content-tab" style="display: none;">
+        <!-- Tombol Kembali -->
+        <button onclick="tutupProfilKunjungan()" style="margin-bottom: 20px; background: none; border: none; color: #64748b; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; font-size: 15px; transition: 0.2s;">
+            <span class="material-symbols-outlined">arrow_back</span> Kembali
+        </button>
+        
+        <div class="profile-header-card" style="display: flex; gap: 30px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+            <img id="visit-avatar" src="" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+            
+            <div class="profile-info-area" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <h2 id="visit-nama" style="font-size: 22px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 6px;">Nama</h2>
+                    <!-- Tombol Ikuti (Tanpa tombol Edit/Upgrade) -->
+                    <button style="margin-left: auto; background: #3b82f6; color: white; border: none; padding: 8px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);">Ikuti</button>
+                </div>
+                
+                <div style="display: flex; gap: 30px; margin-bottom: 15px; font-size: 15px;">
+                    <span><strong>12</strong> Kiriman</span>
+                </div>
+                
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <strong id="visit-username">@username</strong><br>
+                    <span id="visit-bio">Bio pengguna...</span>
+                </div>
+            </div>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+        
+        <!-- Grid Foto Dummy untuk Profil yang Dikunjungi -->
+        <div class="profile-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=300&q=80" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1; border-radius: 8px;">
+        </div>
+    </div>
+
+<!-- TAB 5: PROFILE -->
+    <div id="tab-profile" class="content-tab" style="display: none;">
+        
+        <!-- KONDISI 1: BELUM LOGIN -->
+        <div id="profile-unauth" style="text-align: center; padding: 80px 20px; background: white; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+            <span class="material-symbols-outlined" style="font-size: 80px; color: #cbd5e1;">account_circle</span>
+            <h2 style="margin: 15px 0 10px; color: #1e293b;">Profil Terkunci</h2>
+            <p style="color: #64748b; margin-bottom: 25px; font-size: 15px;">Silakan login menggunakan akun Google untuk mengakses dan mengedit profil Anda.</p>
+            <button onclick="bukaLogin()" style="background: #4285F4; color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px;">Login Sekarang</button>
+        </div>
+
+        <!-- KONDISI 2: SUDAH LOGIN -->
+        <div id="profile-auth" style="display: none;">
+            <div class="profile-header-card" style="display: flex; gap: 30px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                <img id="profile-avatar-img" src="" alt="Profile" class="profile-avatar" style="width: 120px; height: 120px;">
+                
+                <div class="profile-info-area" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <!-- Baris Nama, Edit, dan Tombol Upgrade (Didorong ke kanan) -->
+                    <div class="profile-name-row" style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <h2 id="profile-name-text" style="font-size: 22px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 6px;">
+                            <!-- Nama dan Centang Biru akan dirender JavaScript di sini -->
+                        </h2>
+                        <button class="btn-edit-profile" onclick="bukaEditProfile()">Edit Profile</button>
+                        
+                        <!-- Tombol Upgrade (margin-left: auto membuatnya terdorong ke paling kanan) -->
+                        <button onclick="bukaUpgrade()" style="margin-left: auto; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.4); transition: transform 0.2s;">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">workspace_premium</span> Upgrade
+                        </button>
+                    </div>
+                    
+                    <!-- Baris Kiriman (Pengikut & Mengikuti sudah dihapus) -->
+                    <div class="profile-stats-row" style="display: flex; gap: 30px; margin-bottom: 15px; font-size: 15px;">
+                        <span id="profile-post-count"><strong>0</strong> Postingan</span>
+                    </div>
+                    
+                    <!-- Baris Bio dan Username -->
+                    <div class="profile-bio" style="font-size: 14px; line-height: 1.6; color: #334155;">
+                        <strong id="profile-username-text">@username</strong><br>
+                        <span id="profile-bio-text">Selamat datang di profil saya!</span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+            <div class="profile-grid">
+                <!-- Foto grid Anda -->
+                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=300&q=80">
+            </div>
+        </div>
+
+<!-- TAB 6: KUNJUNGAN PROFIL (Melihat Akun Orang Lain) -->
+    <div id="tab-profil-kunjungan" class="content-tab" style="display: none;">
+        
+        <!-- Tombol Kembali ke Feed -->
+        <button onclick="tutupProfilKunjungan()" style="margin-bottom: 20px; background: none; border: none; color: #64748b; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; font-size: 15px; transition: 0.2s;">
+            <span class="material-symbols-outlined">arrow_back</span> Kembali
+        </button>
+        
+        <div class="profile-header-card" style="display: flex; gap: 30px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+            <img id="visit-avatar" src="" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+            
+            <div class="profile-info-area" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <h2 id="visit-nama" style="font-size: 22px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 6px;">Nama</h2>
+                    
+                    <!-- Tombol Ikuti (Menggantikan Edit & Upgrade) -->
+                    <button style="margin-left: auto; background: #3b82f6; color: white; border: none; padding: 8px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);">Ikuti</button>
+                </div>
+                
+                <div style="display: flex; gap: 30px; margin-bottom: 15px; font-size: 15px;">
+                    <span><strong>12</strong> Kiriman</span>
+                </div>
+                
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <strong id="visit-username">@username</strong><br>
+                    <span id="visit-bio">Bio pengguna...</span>
+                </div>
+            </div>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+        
+        <!-- Grid Foto Dummy -->
+        <div class="profile-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=300&q=80" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+        </div>
+    </div>
+
+    </div>
+</main>
+
+        <!-- KOLOM KANAN: Status Online -->
+        <aside class="right-sidebar"> 
+            <!-- STATUS PENGGUNA (Hanya muncul jika sudah login) -->
+        <div id="status-pengguna-panel" class="online-widget" style="display: none;">
+            <div class="online-header">
+                <h3>Status Pengguna</h3>
+                <button class="more-btn"><span class="material-symbols-outlined">more_horiz</span></button>
+            </div>
+
+            <div class="online-stats">
+                <div class="pulse-dot"></div>
+                <div class="stats-text">
+                    <!-- ID untuk mengubah angka -->
+                    <span class="number" id="angka-online">0</span>
+                    <span class="label">Orang Sedang Online</span>
+                </div>
+            </div>
+
+            <!-- Wadah kosong (ID daftar-online) yang akan diisi otomatis oleh JavaScript -->
+            <div id="daftar-online" class="online-list" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+                 <!-- JavaScript akan mencetak daftar foto dan nama di sini -->
+            </div>
+        </div>
+
+            <!-- PANEL KOMENTAR (DI KANAN) -->
+            <!-- position: sticky dan top: 90px membuatnya tetap terlihat walau layar di-scroll -->
+            <div id="right-comment-panel" style="display: none; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-top: 15px; position: sticky; top: 90px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
+                    <h3 id="comment-panel-title" style="margin: 0; font-size: 15px; color: #1e293b;">Komentar</h3>
+                    <button onclick="tutupKomentarKanan()" style="background: none; border: none; cursor: pointer; color: #64748b; display: flex; align-items: center;"><span class="material-symbols-outlined" style="font-size: 18px;">close</span></button>
+                </div>
+                
+                <!-- Daftar Komentar (Bisa di-scroll di dalam panel) -->
+                <div id="comment-list" style="max-height: 350px; overflow-y: auto; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px; padding-right: 5px;">
+                    <!-- Contoh Komentar Statis -->
+                    <div style="display: flex; gap: 10px;">
+                        <img src="https://i.pravatar.cc/150?img=12" style="width: 32px; height: 32px; border-radius: 50%;">
+                        <div>
+                            <strong style="font-size: 13px; color: #1e293b;">Alex M.</strong>
+                            <p style="margin: 2px 0 0 0; font-size: 13px; color: #475569;">Sudut fotonya pas banget! Pakai kamera apa ini?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Ketik Komentar Baru & Voice Note -->
+                <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+                    <img id="comment-my-avatar" src="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                    
+                    <!-- Wadah Input & Mic yang menyatu -->
+                    <div style="display: flex; flex: 1; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 20px; padding: 4px 12px;">
+                        <input type="text" id="input-komentar-baru" placeholder="Tulis komentar..." style="flex: 1; border: none; background: transparent; outline: none; font-size: 13px; padding: 6px 0;">
+                        
+                        <!-- Tombol Mic (Voice Note) -->
+                        <button id="btn-rekam-vn" onclick="toggleRekamVN()" style="background: none; border: none; color: #64748b; cursor: pointer; display: flex; align-items: center; padding: 4px 8px; border-left: 1px solid #e2e8f0; margin-left: 5px; transition: 0.2s;" title="Rekam VN (Max 30s)">
+                            <span class="material-symbols-outlined" id="ikon-mic" style="font-size: 20px;">mic</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Tombol Kirim Pesan Teks -->
+                    <button onclick="kirimKomentar()" style="background: none; border: none; color: #3b82f6; cursor: pointer; display: flex; align-items: center; padding: 4px;"><span class="material-symbols-outlined">send</span></button>
+                </div>
+                
+                <!-- Indikator Waktu Rekaman VN -->
+                <div id="vn-indicator" style="display: none; font-size: 11.5px; color: #ef4444; margin-top: 8px; font-weight: 600; text-align: center; background: #fef2f2; padding: 6px; border-radius: 6px; animation: pulse 1.5s infinite;">
+                    🔴 Sedang merekam... <span id="vn-timer">0</span>s / 30s (Klik ikon Mic lagi untuk mengirim)
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- MODAL EDIT PROFILE -->
+    <div id="edit-profile-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <h3 style="margin-top: 0; margin-bottom: 20px; color: #1e293b;">Edit Profile</h3>
+            <!-- BAGIAN UBAH FOTO PROFIL -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 25px;">
+                <img id="preview-foto-edit" src="" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <!-- Tombol Upload (Input File Disembunyikan) -->
+                    <label for="input-foto-baru" style="font-size: 13px; font-weight: 600; color: #3b82f6; cursor: pointer; padding: 6px 14px; background: #eff6ff; border-radius: 8px; transition: 0.2s;">Ubah Foto</label>
+                    <input type="file" id="input-foto-baru" accept="image/*" style="display: none;" onchange="previewFotoBaru(event)">
+                    
+                    <!-- Tombol Hapus -->
+                    <button onclick="hapusFotoEdit()" style="font-size: 13px; font-weight: 600; color: #ef4444; cursor: pointer; padding: 6px 14px; background: #fef2f2; border: none; border-radius: 8px; transition: 0.2s;">Hapus</button>
+                </div>
+            </div>
+            
+            <label style="font-size: 13px; font-weight: 600; color: #64748b;">Nama Tampilan</label>
+            <input type="text" id="input-nama" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none;">
+            
+            <label style="font-size: 13px; font-weight: 600; color: #64748b;">Username (tanpa @)</label>
+            <input type="text" id="input-username" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none;">
+            
+            <label style="font-size: 13px; font-weight: 600; color: #64748b;">Bio</label>
+            <textarea id="input-bio" rows="3" style="width: 100%; padding: 10px; margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px; resize: none; outline: none;"></textarea>
+            
+            <!-- TOMBOL AKSI (Simpan, Batal, & Log Out) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <!-- Tombol Logout di sisi kiri (Ditambah ID) -->
+                <button id="btn-logout" onclick="logout()" style="padding: 10px 16px; background: #fef2f2; color: #ef4444; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; transition: all 0.2s;">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">logout</span> Keluar Akun
+                </button>   
+
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="tutupEditProfile()" style="padding: 10px 20px; background: #f1f5f9; color: #64748b; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Batal</button>
+                <button onclick="simpanProfile()" style="padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Simpan</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- MODAL UPGRADE (CENTANG BIRU) -->
+    <div id="upgrade-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: white; padding: 40px 30px; border-radius: 16px; width: 100%; max-width: 400px; text-align: center;">
+            <!-- Ikon Centang Biru Solid -->
+            <span class="material-symbols-outlined" style="font-size: 70px; color: #3b82f6; font-variation-settings: 'FILL' 1; margin-bottom: 10px;">verified</span>
+            
+            <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 24px; color: #1e293b;">Centang Biru Premium</h3>
+            <p style="color: #64748b; font-size: 14.5px; margin-bottom: 25px; line-height: 1.5;">Dukung pengembangan platform ini. Dapatkan lencana verified eksklusif di samping nama Anda selama <strong>30 Hari</strong> (Pembayaran satu kali, bukan langganan).</p>
+            
+            <div style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+                <span style="font-size: 26px; font-weight: 800; color: #1e293b;">Rp 15.000</span> <span style="color: #64748b; font-size: 14px;">/ 30 Hari</span>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onclick="prosesPembayaran()" style="padding: 14px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px;">Bayar Sekarang via QRIS</button>
+                <button onclick="tutupUpgrade()" style="padding: 12px; background: transparent; color: #94a3b8; border: none; cursor: pointer; font-weight: 600;">Mungkin Nanti</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LIHAT PROFIL ORANG LAIN -->
+    <div id="modal-lihat-profil" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); z-index: 999999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: white; padding: 35px; border-radius: 20px; width: 100%; max-width: 350px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative;">
+            <button onclick="tutupLihatProfil()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; cursor: pointer; color: #64748b;"><span class="material-symbols-outlined">close</span></button>
+            
+            <img id="view-profil-avatar" src="" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #eff6ff; margin-bottom: 15px;">
+            <h2 id="view-profil-nama" style="margin: 0 0 5px 0; font-size: 20px; color: #1e293b; display: flex; justify-content: center; align-items: center; gap: 5px;">Nama</h2>
+            <p id="view-profil-username" style="margin: 0 0 15px 0; font-size: 14px; color: #3b82f6; font-weight: 600;">@username</p>
+            <p id="view-profil-bio" style="font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 25px;">Bio pengguna di sini...</p>
+            
+            <button style="width: 100%; padding: 10px; background: #f1f5f9; color: #0f172a; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Ikuti</button>
+        </div>
+    </div>
+
+    <!-- NOTIFIKASI TOAST KUSTOM -->
+    <div id="toast-notification" style="display: flex; align-items: center; gap: 10px; position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 24px; border-radius: 50px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); font-weight: 500; font-size: 14px; z-index: 999999; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); opacity: 0; pointer-events: none;">
+        <span id="toast-icon" class="material-symbols-outlined" style="color: #4ade80;">check_circle</span>
+        <span id="toast-message">Pesan notifikasi di sini</span>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Library ringan untuk membaca token rahasia Google -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+    <!-- Panggil script logika Feed -->
+    <script src="feed.js"></script>
+</body>
+</html>

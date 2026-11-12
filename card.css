@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+}
+body {
+    height: 100vh; width: 100vw; overflow: hidden; position: relative; background-color: #111;
+}
+
+.bg-image {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1606294711685-6481c19b0235?auto=format&fit=crop&q=80');
+    background-size: cover; background-position: center; z-index: -2;
+    transition: background-image 0.5s ease-in-out;
+}
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
+    z-index: -1;
+}
+
+nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 50px; position: relative; z-index: 10; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 20px; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { text-decoration: none; font-size: 14px; opacity: 0.8; transition: opacity 0.3s; }
+.nav-links a:hover { opacity: 1; }
+.nav-right { display: flex; align-items: center; gap: 30px; }
+.icon-btn { background: rgba(255,255,255,0.1); border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; backdrop-filter: blur(5px); }
+.trips-menu { display: flex; align-items: center; gap: 15px; font-size: 14px; }
+
+main { 
+    display: flex; 
+    padding: 0 50px; 
+    height: calc(100vh - 100px); 
+    position: relative; 
+    align-items: center; /* Memastikan teks dan gambar sejajar secara vertikal */
+}
+
+.left-panel { 
+    flex: 0 0 450px; /* Lebar area teks tetap, tidak akan tergeser oleh foto */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    position: relative; 
+    padding-left: 50px; 
+    z-index: 5;
+}
+
+.side-pagination { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.side-pagination .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+.side-pagination .dot.active { background: white; box-shadow: 0 0 10px white; }
+.line-vertical { width: 1px; height: 100px; background: rgba(255,255,255,0.2); margin-top: 10px; }
+.subtitle { font-size: 24px; font-weight: 600; opacity: 0.6; margin-bottom: 5px; }
+.title { font-size: 80px; font-weight: 700; margin-bottom: 20px; letter-spacing: -2px; }
+.description { font-size: 14px; line-height: 1.6; opacity: 0.8; margin-bottom: 40px; }
+.action-wrapper { display: flex; align-items: center; gap: 20px; }
+.circle-number { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; font-weight: 600; }
+.explore-btn { padding: 15px 30px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; font-size: 14px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.3s; display: flex; align-items: center; gap: 30px; }
+.explore-btn:hover { background: rgba(255,255,255,0.2); }
+.bottom-vertical-text { position: absolute; bottom: -80px; left: 0; transform: rotate(-90deg); transform-origin: left bottom; font-size: 12px; opacity: 0.5; }
+
+/* === AREA SLIDER (YANG BISA DIGESER) === */
+.right-panel-wrapper {
+    flex: 1; /* Mengisi sisa ruang di sebelah kanan teks */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Mencegah konten luber ke bawah/atas */
+}
+
+.slider-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto; 
+    scroll-behavior: smooth;
+    cursor: grab;
+    padding: 40px 50px 40px 0; /* Padding kanan agar slide terakhir tidak mentok batas layar */
+}
+.slider-container:active { cursor: grabbing; }
+.slider-container::-webkit-scrollbar { display: none; }
+.slider-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+.card-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    flex-shrink: 0; 
+    transition: transform 0.3s ease; 
+}
+
+.card-header { display: flex; flex-direction: column; gap: 5px; opacity: 0.7; transition: 0.3s; user-select: none; }
+.card-wrapper.active .card-header { opacity: 1; }
+
+/* === TAMBAHAN: Efek Membesar Saat Kursor Menyentuh Kartu (Hover) === */
+.card-wrapper:hover .card {
+    width: 240px; 
+    height: 380px; 
+    filter: brightness(1); 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+}
+.card-header span { font-size: 12px; font-weight: 600; }
+.mini-dots { display: flex; gap: 5px; }
+.mini-dots span { width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%; }
+.card-wrapper.active .mini-dots span.active { background: white; }
+
+.card { width: 200px; height: 330px; border-radius: 15px; background-size: cover; background-position: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.4s ease; filter: brightness(0.6); pointer-events: none; }
+.card-wrapper.active .card { width: 240px; height: 380px; filter: brightness(1); box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
+
+.lock-icon {
+    position: absolute; top: 15px; right: 15px; width: 35px; height: 35px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-size: 16px;
+}
+
+/* === MODAL LOGIN === */
+/* === MODAL LOGIN === */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+    
+    /* Ganti display: none menjadi flex */
+    display: flex; 
+    justify-content: center; align-items: center; z-index: 100;
+    
+    /* Tambahan untuk efek pudar (fade) */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.auth-box {
+    background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px; padding: 40px; width: 360px; position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7); text-align: center;
+    
+    /* Tambahan untuk efek membesar dari bawah (scale) */
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- KELAS PEMICU ANIMASI (Saat Ditampilkan) --- */
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.show .auth-box {
+    transform: scale(1) translateY(0);
+}
+
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; opacity: 0.7; }
+.close-btn:hover { opacity: 1; }
+.auth-box h2 { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+.subtitle-login { font-size: 14px; margin-bottom: 30px; opacity: 0.9; }
+
+.input-group { text-align: left; margin-bottom: 25px; }
+.input-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+.input-group input {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.7);
+    color: white; font-size: 16px; padding: 5px 0; outline: none;
+}
+.input-group input:focus { border-bottom: 2px solid white; }
+
+.error-text { color: #ff6b6b; font-size: 13px; margin-top: -15px; margin-bottom: 20px; text-align: left; display: none; }
+.btn-signup {
+    width: 100%; background: #5586ff; color: white; border: none;
+    padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 600;
+    cursor: pointer; margin-bottom: 10px; transition: 0.3s;
+}
+.btn-signup:hover { background: #4572e0; }
+
+/* === FITUR KOTAK PENCARIAN === */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px solid transparent;
+    transition: 0.4s ease;
+}
+.search-box:focus-within {
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+}
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 0; /* Awalnya tersembunyi */
+    padding: 0;
+    opacity: 0;
+    transition: 0.4s ease;
+    outline: none;
+    font-size: 14px;
+}
+/* Efek kotak memanjang saat didekati mouse atau diketik */
+.search-box:hover input, .search-box input:focus {
+    width: 150px;
+    padding: 5px 15px;
+    opacity: 1;
+}
+.search-box .icon-btn {
+    background: transparent; /* Hilangkan background default agar menyatu dengan kotak */
+}
+
+/* === EFEK TRANSISI PINDAH HALAMAN === */
+
+/* Membuat halaman muncul perlahan saat baru dibuka */
+body {
+    animation: fadeInPage 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Class ini akan dipicu oleh JavaScript saat tombol diklik */
+body.fade-out {
+    animation: fadeOutPage 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOutPage {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* === ANIMASI TOMBOL KEMBALI === */
+
+/* 1. Memastikan perubahan transisinya mulus */
+.explore-btn {
+    transition: all 0.3s ease !important;
+}
+
+/* 2. Efek membesar dan bayangan saat disentuh kursor */
+.explore-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Efek tertekan saat tombol diklik */
+.explore-btn:active {
+    transform: scale(0.95);
+}
+
+/* 4. Memastikan ikon panah bisa digeser */
+.explore-btn .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* 5. Menggeser ikon panah sedikit ke kanan saat tombol disentuh */
+.explore-btn:hover .arrow {
+    transform: translateX(6px);
+}
+
+/* === SISTEM RATING BINTANG === */
+.star-rating {
+    display: flex;
+    gap: 3px; /* Jarak antar bintang */
+    margin-top: 4px; /* Jarak bintang dari teks judul di atasnya */
+}
+
+.star {
+    color: rgba(255, 255, 255, 0.3); /* Warna bintang kosong (putih redup/transparan) */
+    font-size: 13px; /* Ukuran bintang */
+    cursor: default;
+}
+
+.star.active {
+    color: #ffc107; /* Warna bintang terisi (emas/kuning terang) */
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.4); /* Opsional: efek sedikit bersinar */
+}
+
+/* === EFEK TERANG SAAT CARD DI-HOVER === */
+
+/* Memberikan efek transisi halus agar perubahannya tidak kaku (opsional jika sudah ada) */
+.card-header, .card-header span, .star-rating {
+    transition: all 0.3s ease;
+}
+
+/* Memaksa header kartu menjadi terang 100% saat kursor masuk ke area card-wrapper */
+.card-wrapper:hover .card-header {
+    opacity: 1 !important;
+}
+
+/* Memaksa teks nama (Mountain Base, dll) menjadi putih bersih */
+.card-wrapper:hover .card-header > span {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Memaksa bintang rating yang aktif menyala kuning terang maksimal */
+.card-wrapper:hover .star-rating .star.active {
+    color: #ffc107 !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
+}
+

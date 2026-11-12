@@ -1,0 +1,259 @@
+/* === HILANGKAN SCROLLBAR SECARA MENYELURUH === */
+html, body {
+    scrollbar-width: none; /* Untuk Firefox */
+    -ms-overflow-style: none; /* Untuk IE dan Edge Lawas */
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari, Edge Modern, Opera, dll */
+}
+
+/* Reset & Font Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5; 
+    color: #1c1e21;
+    font-size: 16px; /* Tambahkan ini agar semua tulisan sedikit membesar */
+}
+
+/* Layout Utama (3 Kolom) */
+.app-container {
+    display: grid;
+    /* Kolom kiri dan kanan diperlebar ukurannya */
+    grid-template-columns: 280px 1fr 340px; 
+    gap: 50px; /* Jarak antar kolom diperbesar */
+    
+    /* UBAH INI: Agar layout melebar mengikuti 95% ukuran layar Anda */
+    max-width: 95%; 
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+/* === KOLOM KIRI (Menu) === */
+.left-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logo-icon { font-size: 20px; }
+.logo h2 { font-size: 20px; font-weight: 700; }
+
+.menu-section h3 {
+    font-size: 12px;
+    color: oklch(0% 0 0);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.menu-list { list-style: none; }
+
+.menu-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #4b4c4f;
+    transition: 0.2s;
+}
+
+.menu-list li:hover { background-color: #e4e6e9; }
+.menu-list li.active { background-color: #e6f2ff; color: #1877f2; }
+.badge { margin-left: auto; background: #1877f2; color: white; padding: 2px 8px; border-radius: 20px; font-size: 12px; }
+
+/* === KOLOM TENGAH (Postingan) === */
+.post-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Header Postingan */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.post-info { flex: 1; }
+.user-meta { display: flex; align-items: center; gap: 5px; }
+.username { font-weight: 600; font-size: 15px; }
+.date { color: #65676b; font-size: 13px; }
+.location { display: block; color: #65676b; font-size: 12px; margin-top: 2px; }
+.more-btn { background: none; border: none; font-size: 18px; color: #65676b; cursor: pointer; }
+
+/* Body Postingan */
+.post-body { margin-bottom: 15px; }
+.post-image { width: 100%; border-radius: 8px; object-fit: cover; max-height: 700px; }
+
+/* Footer Postingan (Actions) */
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e4e6e9;
+    padding-top: 15px;
+}
+
+.action-left { display: flex; gap: 15px; }
+.action-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #65676b;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.action-btn:hover { background: #f0f2f5; }
+.download-btn { color: #28a745; } /* Warna hijau untuk tombol unduh */
+
+/* === KOLOM KANAN (Status Online) === */
+.right-sidebar { 
+    position: sticky; 
+    top: 20px; 
+    height: fit-content;
+}
+
+.online-widget {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.online-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.online-header h3 { font-size: 15px; font-weight: 600; }
+
+/* Indikator Angka Online */
+.online-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #cce5ff;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #31a24c;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(49, 162, 76, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(49, 162, 76, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(49, 162, 76, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(49, 162, 76, 0); }
+}
+
+.stats-text { display: flex; flex-direction: column; }
+.stats-text .number { font-size: 20px; font-weight: 700; color: #1c1e21; }
+.stats-text .label { font-size: 12px; color: #65676b; }
+
+/* List Orang Online */
+.online-list { list-style: none; }
+.online-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.online-avatar { position: relative; }
+.online-avatar img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #31a24c;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.online-name { font-size: 14px; font-weight: 500; }
+
+
+/* === DESAIN TAB PROFILE (INSTAGRAM STYLE) === */
+.profile-header-card { display: flex; gap: 35px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.profile-avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid #f8fafc; }
+.profile-info-area { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.profile-name-row { display: flex; align-items: center; gap: 20px; margin-bottom: 15px; }
+.profile-name-row h2 { font-size: 22px; font-weight: 600; margin: 0; }
+.btn-edit-profile { padding: 6px 16px; border-radius: 8px; border: none; background: #e2e8f0; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.btn-edit-profile:hover { background: #cbd5e1; }
+.profile-stats-row { display: flex; gap: 30px; margin-bottom: 15px; font-size: 15px; }
+.profile-bio { font-size: 14px; line-height: 1.6; color: #334155; }
+
+.profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.profile-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
+.profile-grid img:hover { opacity: 0.8; }
+
+/* === DESAIN TAB RIWAYAT (LIKE & COMMENT) === */
+.history-item { background: white; padding: 15px; border-radius: 12px; display: flex; gap: 15px; align-items: center; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); cursor: pointer; transition: background 0.2s; }
+.history-item:hover { background: #f8fafc; }
+.history-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+.history-text p { margin: 0 0 5px 0; font-size: 14.5px; }
+.history-text .date { font-size: 12px; color: #64748b; }
+
+
+/* === ANIMASI LOADING REFRESH === */
+.spinner {
+    width: 35px;
+    height: 35px;
+    border: 3px solid #e2e8f0; /* Warna abu-abu terang */
+    border-top-color: #3b82f6; /* Warna biru utama */
+    border-radius: 50%;
+    animation: putarSpinner 0.8s linear infinite;
+}
+
+@keyframes putarSpinner {
+    to { transform: rotate(360deg); }
+}

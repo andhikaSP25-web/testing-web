@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Card - Shared Storage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="card.css">
+</head>
+<body>
+    <div class="bg-image" id="main-bg"></div>
+    <div class="overlay"></div>
+
+    <nav>
+        <div class="logo">
+            <span class="material-symbols-outlined">copyright</span> By Andhika SP25
+        </div>
+
+       <div class="nav-right">
+            <!-- Kotak Pencarian Baru -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Cari card...">
+                <button class="icon-btn">🔍</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="left-panel">
+            <div class="side-pagination">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="line-vertical"></div>
+            </div>
+            
+            <div class="text-content">
+                <h3 class="subtitle">Pusat</h3>
+                <h1 class="title">Shared</h1>
+                <p class="description">
+                    Buat foto random kamu disimpan disini agar suatu hari nanti kita bisa melihat kita yang dulu, tenang disini gratis tapi terbatas ya
+                </p>
+                <div class="action-wrapper">
+                    <div class="circle-number" id="total-kartu">0</div>
+                    <button class="explore-btn" onclick="window.location.href='index.html'">Kembali <span class="arrow">→</span></button>
+                </div>
+            </div>
+            <div class="bottom-vertical-text">03/25</div>
+        </div>
+
+        <div class="right-panel-wrapper">
+            <!-- WADAH KARTU DINAMIS: Semua div panjang sudah dihapus, JS akan mengisinya di sini -->
+            <div class="slider-container" id="wadah-kartu">
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Login tetap dipertahankan jika Anda ingin menggunakannya nanti -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="auth-box">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2>Log In</h2>
+            <p class="subtitle-login">Silakan masukkan username dan sandi Anda untuk melanjutkan.</p>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <p id="error-msg" class="error-text">Maaf, Username atau Sandi salah!</p>
+                <button type="submit" class="btn-signup">Log In</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    // Nonaktifkan klik kanan
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Nonaktifkan tombol shortcut F12, Ctrl+U, Ctrl+Shift+I
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123) return false; // F12
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+    };
+</script>
+
+    <script src="card.js"></script>
+</body>
+</html>

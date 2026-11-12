@@ -1,0 +1,510 @@
+/* === BASE STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* === NAVBAR === */
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    z-index: 100;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.85rem;
+    color: #d1d1d1;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.logo {
+    font-weight: 500;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* === BUTTONS === */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* === HERO SECTION === */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 1) 100%), 
+                url('https://i.pinimg.com/736x/a0/fa/6b/a0fa6b5fb4b1b15658d5e5d42bace91f.jpg') no-repeat center center/cover;
+    padding: 0 2rem;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    max-width: 800px;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #b3b3b3;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* === LOGO TICKER SECTION === */
+.client-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    opacity: 0.4;
+    flex-wrap: wrap;
+}
+
+.client-logos span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* === TYPOGRAPHY STATEMENTS SECTION === */
+.statements {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.statement-text {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.statement-text.dimmed {
+    color: #4a4a4a;
+}
+
+/* === FEATURES SECTION === */
+.features-section {
+    max-width: 1200px;
+    margin: 8rem auto 4rem auto;
+    padding: 0 2rem;
+}
+
+.features-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+}
+
+.features-title-box {
+    max-width: 500px;
+}
+
+.features-title-box h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-top: 1rem;
+    line-height: 1.2;
+}
+
+.features-desc {
+    max-width: 300px;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: right;
+}
+
+.features-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #222;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 1.1rem;
+}
+
+.feature-item:hover, .feature-item.active {
+    color: #ffffff;
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-mockup {
+    background-color: #161618;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.feature-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #1f1f22;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-links, .logo { position: static; transform: none; }
+    nav { flex-direction: column; gap: 1rem; }
+    .features-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .features-desc { text-align: left; }
+    .features-content { grid-template-columns: 1fr; }
+}
+
+/* === Class Pembungkus Utama agar bisa melayang dan sembunyi === */
+.modal-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(8px);
+    
+    display: flex; /* Ganti dari none ke flex */
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999; 
+    
+    /* === TAMBAHAN: Efek Menghilang Halus === */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Tambahkan class khusus ini tepat di bawah .modal-overlay */
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+
+}
+/* === TAMBAHAN: Desain Kotak Floating Pembaruan === */
+.update-box {
+    /* Desain kaca (glassmorphism) seperti referensi */
+    background: rgba(20, 30, 45, 0.75); 
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    position: relative;
+    
+/* ... (kode Anda yang lama biarkan saja) ... */
+    
+    /* Efek kotak mengecil saat sembunyi */
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Tambahkan ini tepat di bawah penutup class .update-box */
+.modal-overlay.show .update-box {
+    transform: scale(1) translateY(0); /* Kembali ke ukuran asli saat muncul */
+    
+    /* Ukuran besar seperti referensi pertama */
+    width: 70%;
+    max-width: 900px;
+    height: 75vh; 
+    padding: 40px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.update-box h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding-bottom: 15px;
+}
+
+/* Area yang bisa di-scroll */
+.update-content {
+    flex: 1; /* Mengisi sisa ruang */
+    overflow-y: auto; /* Memunculkan scroll bar vertikal jika konten melebihi batas */
+    padding-right: 15px;
+    text-align: left;
+}
+
+/* Desain Scrollbar khusus agar elegan */
+.update-content::-webkit-scrollbar { width: 8px; }
+.update-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+.update-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 10px; }
+.update-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.6); }
+
+.update-version {
+    margin-bottom: 30px;
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.update-version h3 {
+    font-size: 24px;
+    color: #ff6b6b; /* Warna judul versi (merah muda terang) */
+    margin-bottom: 15px;
+}
+
+.update-version ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.update-version ul li {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+    opacity: 0.9;
+}
+
+/* Membuat titik peluru custom berwarna senada */
+.update-version ul li::before {
+    content: "•";
+    color: #5586ff;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* === EFEK MEMBESAR PADA TOMBOL & LABEL (HOVER) === */
+
+/* 1. Memastikan animasi pembesarannya berjalan halus (tidak kaku) */
+.btn, .tag {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease !important;
+}
+
+/* 2. Membuat elemen membesar 5% dan memberi sedikit bayangan saat disentuh kursor */
+.btn:hover, .tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Khusus untuk tombol saat diklik (ditekan) agar terasa responsif */
+.btn:active, .tag:active {
+    transform: scale(0.95);
+}
+
+/* === EFEK TRANSISI PINDAH HALAMAN === */
+
+/* Membuat halaman muncul perlahan saat baru dibuka */
+body {
+    animation: fadeInPage 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Class ini akan dipicu oleh JavaScript saat tombol diklik */
+body.fade-out {
+    animation: fadeOutPage 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOutPage {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.text-slider-container {
+    position: relative;
+    min-height: 280px; 
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* 1. Blok utama sekarang diam di tempat (tidak ikut naik/turun) */
+.slide-block {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    pointer-events: none; /* Mencegah blok yang sedang tak terlihat menutupi kursor */
+}
+
+/* Blok yang sedang aktif ditaruh di lapisan atas */
+.slide-block.active {
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* 1. Posisi Dasar (Reset): HAPUS baris 'transition' agar saat pindah ke atas dia langsung melompat tanpa terlihat */
+.slide-block p {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #f3f4f6;
+    text-align: left;
+    
+    opacity: 0;
+    transform: translateY(-40px); /* Bersiap di atas */
+}
+
+.slide-block p.faded {
+    color: #4b5563; 
+}
+
+/* 2. Saat MUNCUL: Pasang 'transition' agar meluncur turun ke tengah dengan mulus */
+.slide-block.active p {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 3. Saat KELUAR: Pasang 'transition' agar meluncur turun ke bawah dengan mulus */
+.slide-block.exit p {
+    opacity: 0;
+    transform: translateY(40px); /* Meluncur ke bawah */
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 3. RAHASIA EFEK SPIN / BERTAHAP */
+/* Tiap baris diberi jeda 0.15 detik dari baris sebelumnya agar seperti gelombang */
+.slide-block p:nth-child(1) { transition-delay: 0s; }
+.slide-block p:nth-child(2) { transition-delay: 0.15s; }
+.slide-block p:nth-child(3) { transition-delay: 0.30s; }
+.slide-block p:nth-child(4) { transition-delay: 0.45s; }
