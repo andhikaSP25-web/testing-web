@@ -561,3 +561,40 @@ body.dark-mode .pricing-card.professional {
         gap: 14px !important;
     }
 }
+
+/* =========================================================================
+   PERBAIKAN KLIK TOMBOL UPGRADE PAKET & LAPISAN MODAL DI MOBILE
+   ========================================================================= */
+.upload-warning:not(.show) {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+    /* Naikkan lapisan header & tombol Upgrade Paket agar tidak tertutup elemen lain */
+    header {
+        position: relative !important;
+        z-index: 100 !important;
+    }
+
+    #area-upgrade-galeri,
+    #area-upgrade-galeri button,
+    .btn-upgrade-premium {
+        position: relative !important;
+        z-index: 105 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        touch-action: manipulation !important;
+    }
+
+    /* Pastikan modal Upgrade Paket & QRIS muncul paling depan saat tombol ditekan */
+    #upgradeModal.show,
+    #qrisModal.show,
+    .modal-overlay.show {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        z-index: 10010 !important;
+    }
+}
