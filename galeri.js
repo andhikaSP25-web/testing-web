@@ -528,9 +528,13 @@ async function eksekusiKosongkanSampah(btnAction, btnText, confirmText) {
 // ==============================================================================
 // 7. SISTEM PROFIL (Sync Langsung ke Server)
 // ==============================================================================
+// ==============================================================================
+// 7. SISTEM PROFIL (Sync Langsung ke Server & Anti-Kedip saat Refresh)
+// ==============================================================================
 function bukaProfil() {
     const avatar = document.getElementById('sidebar-avatar');
-    let urlFoto = avatar.style.backgroundImage !== 'none' ? avatar.style.backgroundImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '') : '';
+    const bgRaw = avatar ? avatar.style.backgroundImage : '';
+    let urlFoto = (bgRaw && bgRaw !== 'none') ? bgRaw.replace(/^url\(["']?/, '').replace(/["']?\)$/, '') : '';
 
     const imgEl = document.getElementById('full-image'), vidEl = document.getElementById('full-video');
     document.querySelector('.action-bar')?.style.setProperty('display', 'none', 'important');
@@ -566,7 +570,11 @@ async function updateProfil(event) {
         document.getElementById('full-image').style.backgroundColor = 'transparent';
 
         profilAktifFileName = 'PROFIL_' + file.name;
-        sessionStorage.setItem('savedProfilePic_' + USERNAME_AKTIF, base64Data);
+        try {
+            sessionStorage.setItem('savedProfilePic_' + USERNAME_AKTIF, base64Data);
+            sessionStorage.setItem('savedProfileName_' + USERNAME_AKTIF, profilAktifFileName);
+            sessionStorage.setItem('savedProfileTime_' + USERNAME_AKTIF, Date.now().toString());
+        } catch (e) {}
 
         const formData = new FormData();
         formData.append('fileName', profilAktifFileName);
@@ -598,10 +606,12 @@ async function hapusProfil() {
     isConfirmingDeleteProfil = false; if (tooltip) tooltip.innerText = 'Menghapus...';
     const pBar = document.getElementById('custom-profile-bar'); if (pBar) pBar.style.opacity = '0.5';
 
-    const fileName = profilAktifFileName;
+    const fileName = profilAktifFileName || sessionStorage.getItem('savedProfileName_' + USERNAME_AKTIF);
     document.getElementById('sidebar-avatar').style.backgroundImage = 'none';
     profilAktifFileName = null;
     sessionStorage.removeItem('savedProfilePic_' + USERNAME_AKTIF);
+    sessionStorage.removeItem('savedProfileName_' + USERNAME_AKTIF);
+    sessionStorage.removeItem('savedProfileTime_' + USERNAME_AKTIF);
     closePhoto();
 
     if (fileName) {
@@ -652,17 +662,29 @@ async function sinkronkanGaleri() {
         if (driveFiles.error) throw new Error(driveFiles.error);
 
         const profilDiDrive = driveFiles.find(f => f.name.startsWith('PROFIL_'));
+        const sAvatar = document.getElementById('sidebar-avatar');
 
         if (profilDiDrive) {
             profilAktifFileName = profilDiDrive.name;
-            const sAvatar = document.getElementById('sidebar-avatar');
             const savedPic = sessionStorage.getItem('savedProfilePic_' + USERNAME_AKTIF);
-            if (!savedPic && sAvatar) sAvatar.style.backgroundImage = `url('${profilDiDrive.url}')`;
+            const savedName = sessionStorage.getItem('savedProfileName_' + USERNAME_AKTIF);
+
+            sessionStorage.setItem('savedProfileName_' + USERNAME_AKTIF, profilDiDrive.name);
+
+            // Jika belum ada cache atau foto di Drive berbeda/diperbarui, simpan & perbarui tampilan
+            if (!savedPic || savedName !== profilDiDrive.name || (!savedPic.startsWith('data:image') && savedPic !== profilDiDrive.url)) {
+                sessionStorage.setItem('savedProfilePic_' + USERNAME_AKTIF, profilDiDrive.url);
+                if (sAvatar) sAvatar.style.backgroundImage = `url('${profilDiDrive.url}')`;
+            }
         } else {
-            profilAktifFileName = null;
-            sessionStorage.removeItem('savedProfilePic_' + USERNAME_AKTIF);
-            const sAvatar = document.getElementById('sidebar-avatar');
-            if (sAvatar) sAvatar.style.backgroundImage = 'none';
+            const waktuUploadTerakhir = parseInt(sessionStorage.getItem('savedProfileTime_' + USERNAME_AKTIF) || '0', 10);
+            // Jangan hapus pratinjau jika baru saja diunggah < 15 detik lalu (menunggu indeks Drive)
+            if (Date.now() - waktuUploadTerakhir > 15000) {
+                profilAktifFileName = null;
+                sessionStorage.removeItem('savedProfilePic_' + USERNAME_AKTIF);
+                sessionStorage.removeItem('savedProfileName_' + USERNAME_AKTIF);
+                if (sAvatar) sAvatar.style.backgroundImage = 'none';
+            }
         }
 
         if (db) {
@@ -679,15 +701,9 @@ async function sinkronkanGaleri() {
                     if (dFile.name.startsWith('PROFIL_')) return;
                     const existing = req.result.find(dbFile => dbFile.name === dFile.name);
                     if (!existing) {
-                        db.transaction(["media"], "readwrite").objectStore("media").put({
-                            name: dFile.name,
-                            url: dFile.url,
-                            isTrashed: false,
-                            date: Date.now()
-                        });
+                        db.transaction(["media"], "readwrite").objectStore("media").put({ name: dFile.name, url: dFile.url, isTrashed: false, date: Date.now() });
                         adaPerubahan = true;
                     } else if (!existing.fileObj && existing.url !== dFile.url) {
-                        // Perbarui URL lama yang rusak dengan URL CDN Google terbaru
                         existing.url = dFile.url;
                         db.transaction(["media"], "readwrite").objectStore("media").put(existing);
                         adaPerubahan = true;
@@ -696,7 +712,8 @@ async function sinkronkanGaleri() {
                 if (adaPerubahan) muatMediaDariDatabase();
             };
         }
-    } catch (e) { tampilkanNotifikasi("Gagal menyinkronkan galeri.", "error"); }
+        updateStorageDisplay();
+    } catch (e) { if (textStorage && textStorage.innerText === "Loading...") textStorage.innerText = "Mode Offline"; }
 }
 
 // ==============================================================================
@@ -981,8 +998,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const elNama = document.querySelector(".profile-name") || document.getElementById("nama-user-sidebar");
     if (elNama) elNama.textContent = USERNAME_AKTIF.toUpperCase();
 
-    // 3. RENDER FOTO PROFIL DARI CACHE SESI
+    // 3. RENDER FOTO PROFIL DARI CACHE SESI (0 Detik, Tanpa Kedip Putih)
     const savedPic = sessionStorage.getItem('savedProfilePic_' + USERNAME_AKTIF);
+    const savedProfileName = sessionStorage.getItem('savedProfileName_' + USERNAME_AKTIF);
+    if (savedProfileName) profilAktifFileName = savedProfileName;
+
     const sAvatar = document.getElementById('sidebar-avatar');
     if (sAvatar) {
         if (savedPic) {
