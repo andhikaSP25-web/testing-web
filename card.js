@@ -62,8 +62,8 @@ function muatSemuaKartu() {
                 document.getElementById('main-bg').style.backgroundImage = `url('${dataKartu[0].gambar}')`;
             }
 
-            // 2. LOGIKA FITUR: Pop-up login HANYA muncul jika Available / punya database
-            if (kartu.password !== "" && kartu.status !== "Not Available") {
+            // 2. LOGIKA FITUR: Pop-up login muncul jika kartu memiliki akses database
+            if (kartu.hasAccess === true) {
                 cardIndexTerpilih = (kartu.cardIndex !== undefined) ? kartu.cardIndex : index;
                 bukaModalLogin();
 
@@ -266,7 +266,7 @@ async function sinkronisasiKartuGlobal() {
                 icon: kartu.icon,
                 apiDrive: API_DRIVE_UTAMA,
                 halamanTujuan: "galeri.html",
-                password: (kartu.hasAccess === true && kartu.status !== "Not Available") ? "Tersedia" : ""
+                password: (kartu.hasAccess === true) ? "Tersedia" : ""
             }));
 
             sessionStorage.setItem('cacheDataKartuGlobal', JSON.stringify(dataKartu));
@@ -360,7 +360,7 @@ async function handleLogin(event) {
     const dataUser = dataKartu.find(u => u.cardIndex === cardIndexTerpilih);
     if (!dataUser) return;
 
-    tombolLogin.textContent = "Memverifikasi...";
+    tombolLogin.textContent = "Loading...";
     tombolLogin.disabled = true;
 
     try {

@@ -526,9 +526,6 @@ async function eksekusiKosongkanSampah(btnAction, btnText, confirmText) {
 }
 
 // ==============================================================================
-// 7. SISTEM PROFIL (Sync Langsung ke Server)
-// ==============================================================================
-// ==============================================================================
 // 7. SISTEM PROFIL (Sync Langsung ke Server & Anti-Kedip saat Refresh)
 // ==============================================================================
 function bukaProfil() {
@@ -878,9 +875,22 @@ function renderUIPaket(paket, bintang, tanggalAktif, tema, teksStatus, tingkatDa
         if (themeIcon) themeIcon.innerText = 'dark_mode';
     }
 
-    // 2. Terapkan Tanggal
-    if (tAktif) tAktif.innerText = `Aktif Sejak: ${tanggalAktif}`;
-
+    // 2. Terapkan Tanggal (Otomatis rapikan jika format ISO UTC)
+    if (tAktif) {
+        let tampilTanggal = tanggalAktif || '-';
+        if (typeof tampilTanggal === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(tampilTanggal)) {
+            const d = new Date(tampilTanggal);
+            if (!isNaN(d.getTime())) {
+                tampilTanggal = d.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+        }
+        tAktif.innerText = `Aktif Sejak: ${tampilTanggal}`;
+    }
+    
     // 3. Terapkan STATUS (Murni Manual dari Spreadsheet Kolom K)
     if (tStatus) {
         tStatus.innerText = `Status: ${teksStatus}`;
