@@ -1,24 +1,52 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+/* =========================================================================
+   1. PENGATURAN DASAR & ANTI BLOK SELEKSI (DESKTOP & MOBILE)
+   ========================================================================= */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
 
-body {
+input, textarea, select {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+}
+
+html, body {
     background-color: #f0f2f5;
-    width: 100vw; height: 100vh;
-    display: flex; overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    display: flex;
+    overflow: hidden;
 }
 
 .dashboard-container {
-    width: 100vw; height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
     background: #ffffff;
-    display: flex; overflow: hidden;
+    display: flex;
+    overflow: hidden;
 }
 
-/* --- SIDEBAR --- */
+/* =========================================================================
+   2. SIDEBAR
+   ========================================================================= */
 .sidebar {
-    width: 280px; 
-    min-width: 280px; 
-    flex-shrink: 0;   
-    border-right: 1px solid #eee; 
-    padding: 2rem 1.5rem; display: flex; flex-direction: column;
+    width: 280px;
+    min-width: 280px;
+    flex-shrink: 0;
+    border-right: 1px solid #eee;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
     background: #ffffff;
 }
 
@@ -28,88 +56,161 @@ body {
 .dot.yellow { background: #ffbd2e; }
 .dot.green { background: #27c93f; }
 
-.user-profile { display: flex; align-items: center; gap: 12px; margin-bottom: 3rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 3rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
 .user-profile:hover { opacity: 0.8; transform: scale(0.98); }
-.avatar { width: 45px; height: 45px; border-radius: 50%; background: #ddd; }
+.avatar { width: 45px; height: 45px; border-radius: 50%; background: #ddd; background-size: cover; background-position: center; }
 .user-info h4 { font-size: 0.9rem; color: #353535; }
 .user-info p { font-size: 0.75rem; color: #888; }
 
 .menu-item {
-    display: flex; align-items: center; gap: 15px;
-    padding: 12px 20px; margin-bottom: 5px; border-radius: 8px;
-    color: #666; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 .menu-item:hover { background-color: #f0f2f5; color: #000; transform: translateX(8px); }
 .menu-item:active { transform: scale(0.95) translateX(8px); background-color: #e4e6e9; }
 
-/* --- MAIN CONTENT --- */
+/* =========================================================================
+   3. MAIN CONTENT & HEADER
+   ========================================================================= */
 .main-content {
-    flex: 1; padding: 2.5rem 4rem; display: flex; flex-direction: column; 
-    overflow-y: auto; background: #ffffff;
+    flex: 1;
+    padding: 2.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #ffffff;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* PENGATURAN HEADER YANG BARU (KIRI DAN KANAN) */
-header { 
-    display: flex !important; 
-    justify-content: space-between !important; 
-    align-items: center; 
-    margin-bottom: 3rem; 
-    width: 100% !important; 
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    margin-bottom: 3rem;
+    width: 100% !important;
 }
 
 .search-bar { display: flex; align-items: center; gap: 10px; color: #888; }
 .search-bar input { border: none; outline: none; font-size: 0.9rem; letter-spacing: 1px; width: 250px; background: transparent; }
 
 .btn-upload {
-    display: flex; align-items: center; gap: 10px;
-    background: #5b8df8; color: #fff; border: none; border-radius: 6px; 
-    padding: 0.6rem 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #5b8df8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
 }
-.btn-upload .plus { background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 4px; }
+.btn-upload .plus { background: rgba(0, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px; }
 .btn-theme:active, .btn-upload:active { transform: scale(0.92) !important; opacity: 0.8 !important; transition: transform 0.1s ease, opacity 0.1s ease !important; }
 .btn-theme:hover, .btn-upload:hover { transform: scale(1.05) !important; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2) !important; z-index: 10 !important; }
 
-/* === DESAIN DROPDOWN SORTIR === */
+/* =========================================================================
+   4. DROPDOWN SORTIR & GRID GALERI (OPTIMASI 60/120FPS)
+   ========================================================================= */
 .sort-dropdown {
-    appearance: none; -webkit-appearance: none; -moz-appearance: none;
-    background-color: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 30px; 
-    padding: 10px 40px 10px 20px; margin-bottom: 1.5rem;
-    font-size: 0.75rem; color: #334155; font-weight: 600; letter-spacing: 0.5px;
-    cursor: pointer; outline: none; transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 10px 40px 10px 20px;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    color: #334155;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; background-size: 14px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
-.sort-dropdown:hover { background-color: #ffffff; border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: #0f172a; }
+.sort-dropdown:hover { background-color: #ffffff; border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); color: #0f172a; }
 .sort-dropdown:focus { border-color: #5b8df8; box-shadow: 0 0 0 3px rgba(91, 141, 248, 0.15); }
 .sort-dropdown option { font-weight: 500; color: #1e293b; background-color: #ffffff; padding: 12px 16px; border-radius: 8px; }
 
-.photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding-bottom: 3rem; }
-.photo-card { height: 160px; border-radius: 8px; background-color: #eee; background-size: cover; background-position: center; cursor: pointer; transition: transform 0.2s; }
-.photo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 3rem;
+}
 
-/* === EFEK MODAL VIEWER === */
+.photo-card {
+    height: 160px;
+    border-radius: 8px;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 160px 160px;
+}
+.photo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+
+/* =========================================================================
+   5. MODAL VIEWER, STORAGE, PROFIL & TOMBOL
+   ========================================================================= */
 .photo-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center;
-    z-index: 100000; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 .photo-overlay.show { opacity: 1; visibility: visible; }
 .photo-container { position: relative; max-width: 90%; max-height: 90vh; transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .photo-overlay.show .photo-container { transform: scale(1); }
-.photo-container img { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: block; }
-#full-video { width: 800px; max-width: 100%; height: auto; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); outline: none; background-color: #000; }
+.photo-container img { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: block; }
+#full-video { width: 800px; max-width: 100%; height: auto; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); outline: none; background-color: #000; }
 .close-viewer { position: absolute; top: 20px; right: 40px; color: white; font-size: 45px; cursor: pointer; transition: color 0.2s; font-weight: 300; z-index: 100001; }
 .close-viewer:hover { color: #ff6b6b; }
 .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3.5rem; color: white; cursor: pointer; user-select: none; padding: 20px; transition: 0.3s ease; z-index: 10; }
 .nav-arrow:hover { color: #5b8df8; transform: translateY(-50%) scale(1.1); }
-.nav-arrow.left { left: 30px; } .nav-arrow.right { right: 30px; }
-.action-bar { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 15px; background: rgba(0, 0, 0, 0.7); padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); }
+.nav-arrow.left { left: 30px; }
+.nav-arrow.right { right: 30px; }
+.action-bar { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 15px; background: rgba(0, 0, 0, 0.7); padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); }
 .action-btn { color: white; font-size: 1.6rem; cursor: pointer; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
 .action-btn:hover { color: #5b8df8; transform: translateY(-3px); }
 .action-btn.active-love { color: #ff4d4d !important; font-variation-settings: 'FILL' 1; }
 
-/* === INDIKATOR STORAGE === */
+/* Indikator Storage */
 .storage-item { padding: 12px 20px; margin-bottom: 5px; display: flex; flex-direction: column; cursor: default; width: 100%; }
 .storage-title { display: flex; align-items: center; gap: 15px; color: #666; font-size: 1rem !important; font-weight: 500 !important; margin-bottom: 12px; }
 .storage-bar-container { width: calc(100% - 39px); margin-left: 39px; }
@@ -118,62 +219,74 @@ header {
 .storage-info-row { display: flex; justify-content: space-between; align-items: center; width: 100% !important; }
 .storage-text, .storage-percent { font-size: 0.70rem !important; font-weight: 500 !important; color: #888; letter-spacing: 0.2px; white-space: nowrap; }
 
-/* === TOOLTIP HAPUS === */
-.delete-tooltip { position: absolute; top: -45px; left: 0; background-color: #ff4d4d; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3); white-space: nowrap; }
+/* Tooltip Hapus & Notifikasi */
+.delete-tooltip { position: absolute; top: -45px; left: 0; background-color: #ff4d4d; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3); white-space: nowrap; }
 .delete-tooltip.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .delete-tooltip::after { content: ''; position: absolute; top: 100%; left: 24px; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #ff4d4d transparent transparent transparent; }
-
-/* === NOTIFIKASI BATAS UPLOAD === */
 .upload-warning { background-color: #ff4d4d; color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.3px; opacity: 0; visibility: hidden; transform: translateX(10px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(255, 77, 77, 0.2); white-space: nowrap; }
 .upload-warning.show { opacity: 1; visibility: visible; transform: translateX(0); }
 
-/* === MODE FOTO PROFIL === */
-#full-image.mode-profil { border-radius: 50% !important; width: 350px !important; height: 350px !important; object-fit: cover !important; aspect-ratio: 1 / 1; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-.profile-action-bar { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 15px; background: rgba(0, 0, 0, 0.7); padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); }
+/* Mode Foto Profil */
+#full-image.mode-profil { border-radius: 50% !important; width: 350px !important; height: 350px !important; object-fit: cover !important; aspect-ratio: 1 / 1; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
+.profile-action-bar { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 15px; background: rgba(0, 0, 0, 0.7); padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); }
 
-/* === TOMBOL THEME === */
+/* Tombol Theme & Sampah */
 .btn-theme { background: transparent; border: 1px solid #d1d5db; border-radius: 8px; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; color: #4b5563; }
 .btn-theme:hover { background: #f3f4f6; }
 
-/* === TOMBOL TONG SAMPAH === */
-.btn-trash { background-color: #ef4444 !important; color: #ffffff !important; border: none !important; border-radius: 8px !important; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; padding: 10px 20px !important; transition: all 0.2s ease !important; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
+.btn-trash { background-color: #ef4444 !important; color: #ffffff !important; border: none !important; border-radius: 8px !important; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; padding: 10px 20px !important; transition: all 0.2s ease !important; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); }
 .btn-trash:hover { background-color: #dc2626 !important; transform: scale(1.05) !important; box-shadow: 0 6px 12px rgba(220, 38, 38, 0.3); }
 .btn-trash:active { transform: scale(0.95) !important; }
 .btn-trash .material-symbols-outlined { color: #ffffff !important; }
 .trash-warning { font-size: 0.85rem; color: #94a3b8; font-weight: 400; margin-left: 12px; vertical-align: middle; letter-spacing: 0.3px; }
 
-/* === DESAIN TIERING & UPGRADE === */
+/* =========================================================================
+   6. TIERING, UPGRADE & MODAL HARGA
+   ========================================================================= */
 .bintang-premium { color: #fbbf24; font-size: 1.25rem; letter-spacing: 3px; margin-bottom: 20px; user-select: none; text-shadow: 0 0 10px rgba(251, 191, 36, 0.2); }
-.btn-upgrade-premium { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); font-family: 'Inter', sans-serif; }
+.btn-upgrade-premium { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
 .btn-upgrade-premium:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(245, 158, 11, 0.4); background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
 .badge-vip { background: rgba(245, 158, 11, 0.1); color: #fbbf24; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; gap: 6px; }
 
-/* === TAMPILAN MODAL OVERLAY (HARGA) === */
 .modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.75); display: flex; justify-content: center; align-items: center;
-    z-index: 9999; backdrop-filter: blur(4px);
-    opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s ease;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
 }
 .modal-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
 
 .modal-content {
-    background: #fdfdfd; padding: 50px 30px; border-radius: 20px;
-    position: relative; max-width: 950px; width: 90%;
-    transform: scale(0.9) translateY(30px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #fdfdfd;
+    padding: 50px 30px;
+    border-radius: 20px;
+    position: relative;
+    max-width: 950px;
+    width: 90%;
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .modal-overlay.show .modal-content { transform: scale(1) translateY(0); }
 
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; background: none; border: none; cursor: pointer; color: #888; }
 .close-btn:hover { color: #333; }
 
-/* === GRID KARTU HARGA === */
 .pricing-container { display: flex; gap: 20px; justify-content: center; align-items: stretch; }
-.pricing-card { background: #ffffff; border-radius: 16px; padding: 30px 25px; width: 32%; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; flex-direction: column; border: 1px solid #f0f0f0; }
-.pricing-card.highlighted { border: 2px solid #e0e7ff; position: relative; transform: scale(1.06); box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #ffffff; z-index: 2; }
+.pricing-card { background: #ffffff; border-radius: 16px; padding: 30px 25px; width: 32%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; border: 1px solid #f0f0f0; }
+.pricing-card.highlighted { border: 2px solid #e0e7ff; position: relative; transform: scale(1.06); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); background: #ffffff; z-index: 2; }
 .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #eef2ff; color: #4f46e5; padding: 6px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; white-space: nowrap; }
 .pricing-card h3 { margin: 0 0 10px 0; font-size: 1.25rem; color: #111; font-weight: 600; }
-.price { font-size: 2.5rem; font-weight: 700; color: #111; margin-bottom: 10px; letter-spacing: -1px; white-space: nowrap;}
+.price { font-size: 2.5rem; font-weight: 700; color: #111; margin-bottom: 10px; letter-spacing: -1px; white-space: nowrap; }
 .price span { font-size: 1rem; color: #666; font-weight: normal; }
 .desc { font-size: 0.85rem; color: #666; margin-bottom: 25px; line-height: 1.4; min-height: 40px; }
 .btn-tier-outline { background: #eef2ff; color: #4f46e5; border: none; padding: 12px; border-radius: 25px; font-weight: 600; cursor: pointer; margin-bottom: 25px; transition: 0.3s; width: 100%; }
@@ -182,15 +295,14 @@ header {
 .btn-tier-solid:hover { background: #4f46e5; }
 .features { list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: #333; }
 .features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-
-/* === CENTANG & SILANG DI DAFTAR FITUR === */
 .icon-check { color: #10b981 !important; font-size: 1.2rem !important; font-weight: bold; }
 .icon-cross { color: #ef4444 !important; font-size: 1.2rem !important; font-weight: bold; display: inline-block !important; }
 .features li.fitur-silang { color: #6b7280 !important; }
 .teks-coret { text-decoration: line-through; }
 
-
-/* === TEMA GELAP (DARK MODE) SUPER KOMPREHENSIF === */
+/* =========================================================================
+   7. TEMA GELAP (DARK MODE)
+   ========================================================================= */
 body.dark-mode, body.dark-mode .dashboard-container, body.dark-mode main { background-color: #121212 !important; }
 body.dark-mode aside.sidebar, body.dark-mode .sidebar { background-color: #1a1a1a !important; border-right: 1px solid #2d2d2d !important; }
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode p, body.dark-mode span, body.dark-mode label, body.dark-mode select, body.dark-mode div { color: #e5e7eb !important; }
@@ -208,58 +320,191 @@ body.dark-mode .upload-warning { color: #ffffff !important; }
 body.dark-mode select { background-color: #2a2a2a !important; color: #e5e7eb !important; border: 1px solid #444 !important; outline: none; }
 body.dark-mode select option { background-color: #2a2a2a !important; color: #e5e7eb !important; }
 body.dark-mode .sort-container, body.dark-mode .filter-bar { background-color: transparent !important; }
+body.dark-mode .photo-card { background-color: #1f2937; border: 1px solid rgba(255, 255, 255, 0.08); }
 
-/* === PENGATURAN MODE GELAP UNTUK MODAL HARGA === */
 body.dark-mode .modal-content { background-color: #1a1a1a !important; color: #ffffff !important; }
 body.dark-mode .pricing-card { background-color: #242424 !important; border: 1px solid #333333 !important; }
 body.dark-mode .pricing-card p, body.dark-mode .pricing-card ul li { color: #a0a0a0 !important; }
 body.dark-mode .pricing-card h2, body.dark-mode .pricing-card .price { color: #ffffff !important; }
-
-/* Perbaikan warna badge "Most Recommended" di mode gelap */
-body.dark-mode .badge {
-    background-color: #4f46e5 !important; 
-    color: #ffffff !important; 
-    border: 1px solid #6366f1 !important; 
-}
-
-/* Menyerlahkan kad tengah di mod gelap (Glowing/Premium effect) */
+body.dark-mode .badge { background-color: #4f46e5 !important; color: #ffffff !important; border: 1px solid #6366f1 !important; }
 body.dark-mode .pricing-card.highlighted,
 body.dark-mode .pricing-card.professional {
     background: linear-gradient(145deg, #2a2a2b 0%, #202022 100%) !important;
-    border: 2px solid #4f46e5 !important; 
-    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25) !important; 
-    transform: scale(1.05) !important; 
+    border: 2px solid #4f46e5 !important;
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25) !important;
+    transform: scale(1.05) !important;
     z-index: 2;
 }
 
-/* =========================================
-   RESPONSIVE MOBILE UNTUK GALERI.HTML
-   ========================================= */
+/* =========================================================================
+   8. RESPONSIVE SMARTPHONE (1 BARIS HEADER SEJAJAR, 3 KOLOM FOTO, FULL SCREEN)
+   ========================================================================= */
 @media (max-width: 768px) {
-    /* Sidebar diubah menjadi menu geser (Off-Canvas Drawer) */
-    aside, .sidebar {
+    html, body, .dashboard-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100dvh !important;
+        overflow: hidden !important;
+    }
+
+    /* Area Konten Utama Full Layar Tanpa Geser Samping */
+    main, .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100dvh !important;
+        margin-left: 0 !important;
+        padding: 12px 12px 24px 12px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Tombol Menu Hamburger (Kiri Atas, Sejajar dengan Baris Header) */
+    #btn-mobile-menu {
+        top: 12px !important;
+        left: 12px !important;
+        width: 34px !important;
+        height: 34px !important;
+        border-radius: 8px !important;
+    }
+
+    #btn-mobile-menu .material-symbols-outlined {
+        font-size: 19px !important;
+    }
+
+    /* Header 1 Baris Rapi: [Menu] [Upgrade Paket] ---- [Tema] [Upload] */
+    header {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+        padding: 0 0 0 42px !important;
+        margin: 0 0 12px 0 !important;
+        min-height: 34px !important;
+        width: 100% !important;
+    }
+
+    /* Tombol Upgrade Paket / Premium Member (Pas & Kompak) */
+    #area-upgrade-galeri {
+        display: flex !important;
+        align-items: center !important;
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+    }
+
+    #area-upgrade-galeri button,
+    .btn-upgrade-premium {
+        height: 34px !important;
+        padding: 0 10px !important;
+        font-size: 11px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+    }
+
+    /* Pembungkus Tombol Mode Gelap/Terang & Upload di Kanan */
+    header > div:last-child {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+        margin-left: auto !important;
+    }
+
+    /* Tombol Mode Gelap/Terang Diperkecil & Sejajar */
+    .btn-theme {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    .btn-theme .material-symbols-outlined {
+        font-size: 18px !important;
+    }
+
+    /* Tombol Upload Diperkecil & Sejajar */
+    #btn-upload-main,
+    .btn-upload {
+        height: 34px !important;
+        padding: 0 10px !important;
+        font-size: 11px !important;
+        gap: 4px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    #btn-upload-main .material-symbols-outlined,
+    .btn-upload .material-symbols-outlined {
+        font-size: 16px !important;
+    }
+
+    .btn-upload .plus {
+        padding: 1px 4px !important;
+        font-size: 10px !important;
+    }
+
+    /* Dropdown "RECENT FILES (Terbaru)" Lebih Kecil */
+    .sort-dropdown {
+        padding: 5px 26px 5px 11px !important;
+        font-size: 10.5px !important;
+        margin-bottom: 10px !important;
+        border-radius: 20px !important;
+        background-position: right 9px center !important;
+        background-size: 11px !important;
+    }
+
+    /* Tampilan Grid Galeri 3 Kolom Simetris */
+    .photo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+        padding-bottom: 24px !important;
+        width: 100% !important;
+    }
+
+    .photo-card {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        border-radius: 8px !important;
+    }
+
+    .photo-card:hover {
+        transform: none !important;
+    }
+
+    /* Sidebar Drawer Off-Canvas */
+    aside.sidebar, .sidebar {
         position: fixed !important;
-        top: 0;
+        top: 0 !important;
         left: -280px !important;
         width: 260px !important;
-        height: 100vh !important;
+        max-width: 80vw !important;
+        height: 100dvh !important;
         z-index: 9999 !important;
-        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
         overflow-y: auto !important;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
     }
 
-    aside.mobile-open, .sidebar.mobile-open {
+    aside.sidebar.mobile-open, .sidebar.mobile-open {
         left: 0 !important;
     }
 
-    /* Overlay gelap saat sidebar dibuka */
     #mobile-sidebar-backdrop {
         display: none;
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(3px);
         z-index: 9998;
     }
 
@@ -267,157 +512,52 @@ body.dark-mode .pricing-card.professional {
         display: block;
     }
 
-    /* Area konten utama melebar penuh 100% */
-    main, .main-content {
-        width: 100% !important;
-        margin-left: 0 !important;
-        padding: 14px !important;
-    }
-
-    /* Header tombol atas (Menu, Upgrade Paket, Tema, Upload) */
-    .top-bar, header {
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-        padding-left: 46px !important; /* Ruang untuk tombol hamburger */
-    }
-
-    #btn-upload-main, .btn-upgrade-premium {
-        padding: 8px 14px !important;
-        font-size: 0.82rem !important;
-    }
-
-    /* Grid Galeri 2 Kolom Rapi seperti Aplikasi Galeri HP */
-    .photo-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-    }
-
-    .photo-card {
-        height: 170px !important;
-        border-radius: 12px !important;
-    }
-
-    /* Modal Upgrade Paket (3 Kartu ditumpuk vertikal agar bisa di-scroll) */
-    #upgradeModal .modal-content, .pricing-container, .tier-wrapper {
+    /* Modal Upgrade Paket (3 Kartu Ditumpuk Vertikal Rapi) */
+    #upgradeModal .modal-content, .pricing-container {
         flex-direction: column !important;
-        grid-template-columns: 1fr !important;
         width: 92% !important;
-        max-height: 85vh !important;
+        max-height: 85dvh !important;
         overflow-y: auto !important;
         gap: 14px !important;
         padding: 18px !important;
     }
 
-    /* Modal QRIS */
+    .pricing-card,
+    .pricing-card.highlighted,
+    body.dark-mode .pricing-card.highlighted,
+    body.dark-mode .pricing-card.professional {
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    /* Modal QRIS & Viewer Foto */
     #qrisModal .modal-content {
         width: 90% !important;
         max-width: 340px !important;
         padding: 20px !important;
     }
 
-    /* Lightbox / Photo Viewer */
     #full-image, #full-video {
         max-width: 94vw !important;
-        max-height: 70vh !important;
+        max-height: 72dvh !important;
+    }
+
+    #full-image.mode-profil {
+        width: 240px !important;
+        height: 240px !important;
     }
 
     .nav-arrow {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 1.2rem !important;
+        font-size: 2rem !important;
+        padding: 10px !important;
     }
+
+    .nav-arrow.left { left: 8px !important; }
+    .nav-arrow.right { right: 8px !important; }
 
     .action-bar, #custom-profile-bar {
         bottom: 20px !important;
         padding: 8px 16px !important;
         gap: 14px !important;
-    }
-}
-
-/* =========================================================================
-   GLOBAL: HILANGKAN PINGGIRAN HITAM & BLOK SELEKSI TEKS (INDEX, CARD, GALERI)
-   ========================================================================= */
-*, *::before, *::after {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 100dvh;
-    overflow-x: hidden !important;
-}
-
-/* Pastikan background utama penuh ke seluruh tepi layar tanpa celah hitam */
-#main-bg, .bg-utama, .hero-bg {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100dvh !important;
-    background-size: cover !important;
-    background-position: center !important;
-}
-
-/* Tetap izinkan seleksi & ketik normal pada kolom input (Login & Search) */
-input, textarea {
-    -webkit-user-select: text !important;
-    user-select: text !important;
-    -webkit-touch-callout: default !important;
-}
-
-/* =========================================================================
-   OPTIMASI PERFORMA RENDERING 60FPS / 120FPS
-   ========================================================================= */
-#main-bg {
-    transform: translateZ(0);
-    will-change: background-image;
-    backface-visibility: hidden;
-}
-
-#wadah-kartu {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: none !important; /* Mencegah patah-patah saat geser cepat */
-    transform: translateZ(0);
-}
-
-.card-wrapper,
-.photo-card {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-/* Lewati rendering kartu galeri yang belum masuk layar (sangat mempercepat scroll) */
-.photo-card {
-    content-visibility: auto;
-    contain-intrinsic-size: 200px 220px;
-}
-
-/* Kurangi beban blur GPU khusus di layar smartphone */
-@media (max-width: 768px) {
-    *, *::before, *::after {
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    /* Ganti transparansi blur dengan warna solid semi-transparan yang ringan */
-    #search-input,
-    .btn-back,
-    .kembali-btn,
-    #total-kartu,
-    .lock-icon {
-        background: rgba(20, 25, 35, 0.72) !important;
-    }
-
-    #auth-modal > div,
-    .modal-content,
-    #custom-toast {
-        background: rgba(15, 23, 42, 0.96) !important;
     }
 }
