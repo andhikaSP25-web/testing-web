@@ -225,6 +225,7 @@ header {
 .delete-tooltip::after { content: ''; position: absolute; top: 100%; left: 24px; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #ff4d4d transparent transparent transparent; }
 .upload-warning { background-color: #ff4d4d; color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.3px; opacity: 0; visibility: hidden; transform: translateX(10px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(255, 77, 77, 0.2); white-space: nowrap; }
 .upload-warning.show { opacity: 1; visibility: visible; transform: translateX(0); }
+.upload-warning:not(.show) { display: none !important; pointer-events: none !important; }
 
 /* Mode Foto Profil */
 #full-image.mode-profil { border-radius: 50% !important; width: 350px !important; height: 350px !important; object-fit: cover !important; aspect-ratio: 1 / 1; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
@@ -373,6 +374,8 @@ body.dark-mode .pricing-card.professional {
 
     /* Header 1 Baris Rapi: [Menu] [Upgrade Paket] ---- [Tema] [Upload] */
     header {
+        position: relative !important;
+        z-index: 100 !important;
         display: flex !important;
         flex-wrap: nowrap !important;
         align-items: center !important;
@@ -384,16 +387,21 @@ body.dark-mode .pricing-card.professional {
         width: 100% !important;
     }
 
-    /* Tombol Upgrade Paket / Premium Member (Pas & Kompak) */
+    /* Tombol Upgrade Paket / Premium Member (Pas, Kompak & Bisa Ditekan) */
     #area-upgrade-galeri {
+        position: relative !important;
+        z-index: 105 !important;
         display: flex !important;
         align-items: center !important;
         flex-shrink: 1 !important;
         min-width: 0 !important;
+        pointer-events: auto !important;
     }
 
     #area-upgrade-galeri button,
     .btn-upgrade-premium {
+        position: relative !important;
+        z-index: 105 !important;
         height: 34px !important;
         padding: 0 10px !important;
         font-size: 11px !important;
@@ -403,6 +411,9 @@ body.dark-mode .pricing-card.professional {
         align-items: center !important;
         justify-content: center !important;
         gap: 4px !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        touch-action: manipulation !important;
     }
 
     /* Pembungkus Tombol Mode Gelap/Terang & Upload di Kanan */
@@ -513,7 +524,18 @@ body.dark-mode .pricing-card.professional {
         display: block;
     }
 
-/* Modal Upgrade Paket (1 Area Scroll Mulus, Tanpa Scrollbar Putih Ganda) */
+    /* Pastikan Modal Upgrade Paket & QRIS Muncul Paling Depan */
+    #upgradeModal.show,
+    #qrisModal.show,
+    .modal-overlay.show {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        z-index: 10010 !important;
+    }
+
+    /* Modal Upgrade Paket (1 Area Scroll Mulus, Tanpa Scrollbar Putih Ganda) */
     #upgradeModal .modal-content {
         width: 92% !important;
         max-width: 410px !important;
@@ -612,41 +634,115 @@ body.dark-mode .pricing-card.professional {
         margin-bottom: 9px !important;
         gap: 8px !important;
     }
-}
 
-/* =========================================================================
-   PERBAIKAN KLIK TOMBOL UPGRADE PAKET & LAPISAN MODAL DI MOBILE
-   ========================================================================= */
-.upload-warning:not(.show) {
-    display: none !important;
-    pointer-events: none !important;
-}
-
-@media (max-width: 768px) {
-    /* Naikkan lapisan header & tombol Upgrade Paket agar tidak tertutup elemen lain */
-    header {
-        position: relative !important;
-        z-index: 100 !important;
+    /* Modal QRIS */
+    #qrisModal .modal-content {
+        width: 90% !important;
+        max-width: 340px !important;
+        padding: 20px !important;
     }
 
-    #area-upgrade-galeri,
-    #area-upgrade-galeri button,
-    .btn-upgrade-premium {
-        position: relative !important;
-        z-index: 105 !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
+    /* Lightbox / Photo Viewer (Sembunyikan Panah di HP & Aktifkan Geser Jari) */
+    #full-image, #full-video {
+        max-width: 94vw !important;
+        max-height: 72dvh !important;
     }
 
-    /* Pastikan modal Upgrade Paket & QRIS muncul paling depan saat tombol ditekan */
-    #upgradeModal.show,
-    #qrisModal.show,
-    .modal-overlay.show {
+    #full-image.mode-profil {
+        width: 240px !important;
+        height: 240px !important;
+    }
+
+    .nav-arrow {
+        display: none !important;
+    }
+
+    .photo-overlay,
+    .photo-container {
+        touch-action: pan-y !important;
+    }
+
+    .action-bar, #custom-profile-bar {
+        bottom: 14px !important;
+        right: 14px !important;
+        padding: 6px 14px !important;
+        gap: 12px !important;
+    }
+
+    .action-btn,
+    .action-btn .material-symbols-outlined {
+        font-size: 1.25rem !important;
+    }
+
+    /* Penyesuaian Tab Sampah (#tab-trash) di Smartphone */
+    #tab-trash > div:first-child {
         display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        z-index: 10010 !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        margin-bottom: 16px !important;
+        width: 100% !important;
+    }
+
+    #tab-trash > div:first-child > div:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 3px !important;
+        width: 100% !important;
+    }
+
+    #tab-trash h2 {
+        font-size: 1.15rem !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+    }
+
+    #tab-trash .trash-warning {
+        display: block !important;
+        margin-left: 0 !important;
+        font-size: 0.76rem !important;
+        line-height: 1.35 !important;
+        opacity: 0.75 !important;
+    }
+
+    /* Tombol Kosongkan Sampah Rata Kanan */
+    #tab-trash > div:first-child > div:last-child {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    #btn-kosongkan-sampah,
+    #tab-trash .btn-trash {
+        height: 34px !important;
+        padding: 0 12px !important;
+        font-size: 0.76rem !important;
+        border-radius: 8px !important;
+        gap: 5px !important;
+        white-space: nowrap !important;
+    }
+
+    #btn-kosongkan-sampah .material-symbols-outlined,
+    #tab-trash .btn-trash .material-symbols-outlined {
+        font-size: 16px !important;
+    }
+
+    #trash-confirm-text {
+        font-size: 0.75rem !important;
+        white-space: nowrap !important;
+    }
+
+    #tab-trash .pesan-kosong {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 64px 16px !important;
+        font-size: 0.85rem !important;
+        opacity: 0.65 !important;
     }
 }
