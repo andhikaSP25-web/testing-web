@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Private Card - Shared Storage</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
@@ -31,13 +33,14 @@
         <div class="left-panel">
             <div class="side-pagination">
                 <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot "></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="line-vertical"></div>
+                <div class="class-angka-0325">25/12/2026</div>
             </div>
-            
+
             <div class="text-content">
                 <h3 class="subtitle">Pusat</h3>
                 <h1 class="title">Shared</h1>
@@ -46,10 +49,9 @@
                 </p>
                 <div class="action-wrapper">
                     <div class="circle-number" id="total-kartu">0</div>
-                    <button class="explore-btn" onclick="window.location.href='index.html'">Kembali <span class="arrow">→</span></button>
+                    <button class="explore-btn" onclick="window.location.href='index.html'">Kembali →</button>
                 </div>
             </div>
-            <div class="bottom-vertical-text">03/25</div>
         </div>
 
         <div class="right-panel-wrapper">
@@ -77,7 +79,7 @@
                     <input type="password" id="password" required>
                 </div>
                 
-                <p id="error-msg" class="error-text">Maaf, Username atau Sandi salah!</p>
+                <p id="error-msg" class="error-text">Password salah!</p>
                 <button type="submit" class="btn-signup">Log In</button>
             </form>
         </div>

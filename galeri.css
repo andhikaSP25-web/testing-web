@@ -232,3 +232,104 @@ body.dark-mode .pricing-card.professional {
     z-index: 2;
 }
 
+/* =========================================
+   RESPONSIVE MOBILE UNTUK GALERI.HTML
+   ========================================= */
+@media (max-width: 768px) {
+    /* Sidebar diubah menjadi menu geser (Off-Canvas Drawer) */
+    aside, .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: -280px !important;
+        width: 260px !important;
+        height: 100vh !important;
+        z-index: 9999 !important;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        overflow-y: auto !important;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    aside.mobile-open, .sidebar.mobile-open {
+        left: 0 !important;
+    }
+
+    /* Overlay gelap saat sidebar dibuka */
+    #mobile-sidebar-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+        z-index: 9998;
+    }
+
+    #mobile-sidebar-backdrop.show {
+        display: block;
+    }
+
+    /* Area konten utama melebar penuh 100% */
+    main, .main-content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 14px !important;
+    }
+
+    /* Header tombol atas (Menu, Upgrade Paket, Tema, Upload) */
+    .top-bar, header {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding-left: 46px !important; /* Ruang untuk tombol hamburger */
+    }
+
+    #btn-upload-main, .btn-upgrade-premium {
+        padding: 8px 14px !important;
+        font-size: 0.82rem !important;
+    }
+
+    /* Grid Galeri 2 Kolom Rapi seperti Aplikasi Galeri HP */
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .photo-card {
+        height: 170px !important;
+        border-radius: 12px !important;
+    }
+
+    /* Modal Upgrade Paket (3 Kartu ditumpuk vertikal agar bisa di-scroll) */
+    #upgradeModal .modal-content, .pricing-container, .tier-wrapper {
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        width: 92% !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+        gap: 14px !important;
+        padding: 18px !important;
+    }
+
+    /* Modal QRIS */
+    #qrisModal .modal-content {
+        width: 90% !important;
+        max-width: 340px !important;
+        padding: 20px !important;
+    }
+
+    /* Lightbox / Photo Viewer */
+    #full-image, #full-video {
+        max-width: 94vw !important;
+        max-height: 70vh !important;
+    }
+
+    .nav-arrow {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.2rem !important;
+    }
+
+    .action-bar, #custom-profile-bar {
+        bottom: 20px !important;
+        padding: 8px 16px !important;
+        gap: 14px !important;
+    }
+}

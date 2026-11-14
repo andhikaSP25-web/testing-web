@@ -304,3 +304,92 @@ body.fade-out {
     text-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
 }
 
+    .class-angka-0325 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 10px;
+}
+
+/* =========================================
+   RESPONSIVE MOBILE UNTUK CARD.HTML
+   ========================================= */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        min-height: 100vh;
+    }
+
+    /* Susun area teks utama dan slider kartu menjadi atas-bawah */
+    .container, .main-wrapper, main {
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding: 80px 20px 30px 20px !important;
+        gap: 24px !important;
+        height: auto !important;
+    }
+
+    /* Perkecil ukuran judul besar ("Shared") agar pas di layar HP */
+    h1, .hero-title {
+        font-size: 2.6rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 10px !important;
+    }
+
+    p, .hero-desc {
+        font-size: 0.9rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Buat slider kartu nyaman digeser dengan jari */
+    #wadah-kartu {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        margin-left: 0 !important;
+        padding: 12px 20px 24px 20px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 14px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        touch-action: pan-x !important;
+        -webkit-overflow-scrolling: touch !important;
+        z-index: 20 !important;
+        scrollbar-width: none;
+    }
+
+    #wadah-kartu::-webkit-scrollbar {
+        display: none;
+    }
+    .card-wrapper {
+        flex: 0 0 155px !important;
+        width: 155px !important;
+        min-width: 155px !important;
+        margin: 0 !important;
+    }
+
+    .card {
+        width: 100% !important;
+        height: 220px !important;
+        border-radius: 16px !important;
+    }
+    
+
+    /* Sesuaikan pop-up login agar pas di tengah layar HP */
+    #auth-modal .modal-content, .auth-box {
+        width: 90% !important;
+        max-width: 350px !important;
+        padding: 24px 20px !important;
+        border-radius: 18px !important;
+    }
+
+    #username, #password {
+        font-size: 16px !important; /* Mencegah auto-zoom di HP */
+    }
+}
