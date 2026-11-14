@@ -1143,3 +1143,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resetTimerDiam();
 })();
+
+/* =========================================================================
+   GESTUR SWIPE (GESER JARI) PADA VIEWER FOTO & VIDEO
+   ========================================================================= */
+(function () {
+    const overlay = document.querySelector('.photo-overlay');
+    const container = document.querySelector('.photo-container');
+    if (!overlay || !container) return;
+
+    let startX = 0;
+    let startY = 0;
+    let diffX = 0;
+    let diffY = 0;
+    let isSwiping = false;
+
+    overlay.addEventListener('touchstart', (e) => {
+        if (!overlay.classList.contains('show') || e.touches.length > 1) return;
+        if (e.target.closest('.action-bar, #custom-profile-bar, .close-viewer')) return;
+
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        diffX = 0;
+        diffY = 0;
+        isSwiping = true;
+        container.style.transition = 'none';
+    }, { passive: true });
+
+    overlay.addEventListener('touchmove', (e) => {
+        if (!isSwiping || e.touches.length > 1) return;
+
+        diffX = e.touches[0].clientX - startX;
+        diffY = e.touches[0].clientY - startY;
+
+        // Gerakkan foto mengikuti jari jika geseran dominan horizontal
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            container.style.transform = `translateX(${diffX * 0.35}px)`;
+        }
+    }, { passive: true });
+
+    overlay.addEventListener('touchend', () => {
+        if (!isSwiping) return;
+        isSwiping = false;
+
+        container.style.transition = 'transform 0.25s ease';
+        container.style.transform = 'translateX(0)';
+
+        // Minimal geser 45px agar tidak tidak sengaja berpindah saat tap
+        if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+            const targetArrow = diffX < 0
+                ? document.querySelector('.nav-arrow.right') // Geser ke kiri -> Foto berikutnya
+                : document.querySelector('.nav-arrow.left'); // Geser ke kanan -> Foto sebelumnya
+
+            // Jalankan fungsi panah jika sedang tidak dalam mode foto profil
+            if (targetArrow && targetArrow.style.display !== 'none') {
+                targetArrow.click();
+            }
+        }
+    });
+})();
