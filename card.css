@@ -395,20 +395,31 @@ body.fade-out {
 }
 
 /* =========================================================================
-   RESPONSIVE SMARTPHONE (Hanya Header Brand & Animasi Search)
+   RESPONSIVE SMARTPHONE (Proporsi Rapat, Elegan & Kartu Tampil Penuh)
    ========================================================================= */
 @media (max-width: 768px) {
-    /* 1. Rapatkan jarak kiri-kanan header agar ruang lebih lega */
+    html, body {
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        max-height: 100dvh !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        padding: 12px 0 16px 0 !important;
+    }
+
+    /* 1. HEADER ATAS (Rapat & Tetap 1 Baris) */
     header, .header, .navbar, .top-bar {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+        padding: 4px 20px !important;
+        margin: 0 !important;
         gap: 10px !important;
         justify-content: space-between !important;
         align-items: center !important;
         flex-wrap: nowrap !important;
+        flex-shrink: 0 !important;
     }
 
-    /* 2. Jaga teks "© By Andhika SP25" tetap 1 baris (tidak turun jadi 3 baris) */
     header > div:first-child,
     .header > div:first-child,
     .navbar > div:first-child,
@@ -416,12 +427,12 @@ body.fade-out {
     .logo {
         white-space: nowrap !important;
         flex-shrink: 0 !important;
-        font-size: 0.88rem !important;
+        font-size: 0.86rem !important;
     }
 
-    /* 3. Animasi Search tetap jalan, batasi lebar saat melebar agar tidak menabrak teks */
+    /* Animasi Search tetap berjalan & tidak menabrak brand saat melebar */
     #search-input {
-        font-size: 0.85rem !important;
+        font-size: 0.84rem !important;
         color: #ffffff !important;
     }
 
@@ -439,10 +450,121 @@ body.fade-out {
     .search-container:hover #search-input,
     .search-container:focus-within #search-input,
     .search-container.active #search-input {
-        width: 150px !important;
+        width: 148px !important;
         max-width: 44vw !important;
         padding-left: 14px !important;
         padding-right: 36px !important;
+    }
+
+    /* 2. AREA TENGAH ("Pusat Shared") — Pangkas Jarak Kosong Atas & Bawah */
+    main, .main, .container, .main-content, .content-wrapper {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        gap: 14px !important;
+    }
+
+    .hero-text, .left-content, .content-left, .text-box, .info-section {
+        padding-left: 48px !important;
+        padding-right: 20px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .hero-text h1, .left-content h1, .content-left h1, .text-box h1 {
+        font-size: 2.25rem !important;
+        line-height: 1.08 !important;
+        margin: 2px 0 8px 0 !important;
+    }
+
+    .hero-text p, .left-content p, .content-left p, .text-box p {
+        font-size: 0.83rem !important;
+        line-height: 1.42 !important;
+        margin-bottom: 14px !important;
+    }
+
+    /* Tombol "25" dan "Kembali ->" lebih ringkas & sejajar */
+    #total-kartu, .circle-badge, .count-badge {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .btn-back, .kembali-btn {
+        height: 42px !important;
+        padding: 0 22px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Indikator titik & tanggal vertikal di kiri diselaraskan */
+    .timeline, .left-indicator, .side-indicator, .page-indicator {
+        left: 16px !important;
+        top: 38% !important;
+        transform: translateY(-50%) scale(0.84) !important;
+        transform-origin: left center !important;
+    }
+
+    /* 3. AREA KARTU BAWAH — Jarak Dipersempit & Kartu Tampil Utuh */
+    #wadah-kartu {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 4px 20px 6px 48px !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        gap: 12px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0 !important;
+    }
+
+    #wadah-kartu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card-wrapper {
+        min-width: 142px !important;
+        width: 142px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .card-header {
+        margin-bottom: 6px !important;
+    }
+
+    .card-header span {
+        font-size: 0.78rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 138px;
+        display: block;
+    }
+
+    .star-rating .star {
+        font-size: 0.72rem !important;
+    }
+
+    .card {
+        width: 100% !important;
+        height: 188px !important;
+        border-radius: 16px !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    .lock-icon {
+        width: 30px !important;
+        height: 30px !important;
+        top: 10px !important;
+        right: 10px !important;
     }
 }
 
