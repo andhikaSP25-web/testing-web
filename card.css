@@ -627,32 +627,31 @@ main {
         gap: 8px;
     }
 
-    .left-panel {
+.left-panel {
         flex: 0 0 auto;
         width: 100%;
-        padding: 4px 20px 0 46px;
+        margin: auto 0;
+        padding: 4px 20px 4px 48px;
         position: relative;
     }
 
     .side-pagination {
-        left: 16px;
-        top: 8px;
-        transform: none;
-        gap: 10px;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 8px;
     }
 
     .line-vertical {
-        height: 55px;
-        margin-top: 4px;
+        height: 45px;
+        margin-top: 2px;
     }
 
-    .bottom-vertical-text,
     .class-angka-0325 {
-        position: absolute;
-        left: 11px;
-        bottom: -4px;
-        margin-top: 0;
+        position: static;
+        margin-top: 4px;
         font-size: 10px;
+        letter-spacing: 1.5px;
     }
 
     .subtitle {
