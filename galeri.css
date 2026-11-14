@@ -482,22 +482,23 @@ body.dark-mode .pricing-card.professional {
         transform: none !important;
     }
 
-    /* Sidebar Drawer Off-Canvas */
+    /* Sidebar Drawer Off-Canvas (Hilangkan Fade Hitam di Tepi Kiri saat Tertutup) */
     aside.sidebar, .sidebar {
         position: fixed !important;
         top: 0 !important;
-        left: -280px !important;
+        left: -300px !important;
         width: 260px !important;
         max-width: 80vw !important;
         height: 100dvh !important;
         z-index: 9999 !important;
-        transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s ease !important;
         overflow-y: auto !important;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
+        box-shadow: none !important;
     }
 
     aside.sidebar.mobile-open, .sidebar.mobile-open {
         left: 0 !important;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
     }
 
     #mobile-sidebar-backdrop {
