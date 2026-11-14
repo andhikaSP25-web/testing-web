@@ -671,3 +671,40 @@ body.fade-out {
         margin-bottom: 8px !important;
     }
 }
+
+/* =========================================================================
+   GLOBAL: HILANGKAN PINGGIRAN HITAM & BLOK SELEKSI TEKS (INDEX, CARD, GALERI)
+   ========================================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100dvh;
+    overflow-x: hidden !important;
+}
+
+/* Pastikan background utama penuh ke seluruh tepi layar tanpa celah hitam */
+#main-bg, .bg-utama, .hero-bg {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Tetap izinkan seleksi & ketik normal pada kolom input (Login & Search) */
+input, textarea {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+}
