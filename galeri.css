@@ -512,89 +512,103 @@ body.dark-mode .pricing-card.professional {
         display: block;
     }
 
-    /* Modal Upgrade Paket (3 Kartu Ditumpuk Vertikal Rapi) */
-    #upgradeModal .modal-content, .pricing-container {
-        flex-direction: column !important;
+/* Modal Upgrade Paket (1 Area Scroll Mulus, Tanpa Scrollbar Putih Ganda) */
+    #upgradeModal .modal-content {
         width: 92% !important;
-        max-height: 85dvh !important;
-        overflow-y: auto !important;
-        gap: 14px !important;
-        padding: 18px !important;
+        max-width: 410px !important;
+        max-height: 86dvh !important;
+        padding: 44px 14px 14px 14px !important;
+        border-radius: 18px !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
-    .pricing-card,
-    .pricing-card.highlighted,
-    body.dark-mode .pricing-card.highlighted,
-    body.dark-mode .pricing-card.professional {
+    #upgradeModal .close-btn {
+        top: 10px !important;
+        right: 12px !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        background: rgba(148, 163, 184, 0.18) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 20px !important;
+        line-height: 1 !important;
+        z-index: 20 !important;
+    }
+
+    #upgradeModal .pricing-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
+        padding: 14px 2px 6px 2px !important;
+        max-height: calc(86dvh - 58px) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+
+    #upgradeModal .pricing-container::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    #upgradeModal .pricing-card,
+    #upgradeModal .pricing-card.highlighted,
+    body.dark-mode #upgradeModal .pricing-card.highlighted,
+    body.dark-mode #upgradeModal .pricing-card.professional {
         width: 100% !important;
         transform: none !important;
+        padding: 20px 18px !important;
+        border-radius: 14px !important;
+        margin: 0 !important;
     }
 
-    /* Modal QRIS & Viewer Foto */
-    #qrisModal .modal-content {
-        width: 90% !important;
-        max-width: 340px !important;
-        padding: 20px !important;
+    #upgradeModal .pricing-card.highlighted {
+        margin-top: 6px !important;
     }
 
-    #full-image, #full-video {
-        max-width: 94vw !important;
-        max-height: 72dvh !important;
+    #upgradeModal .badge {
+        top: -13px !important;
+        padding: 4px 14px !important;
+        font-size: 0.72rem !important;
     }
 
-    #full-image.mode-profil {
-        width: 240px !important;
-        height: 240px !important;
+    #upgradeModal .pricing-card h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 6px !important;
     }
 
-    .nav-arrow {
-        font-size: 2rem !important;
-        padding: 10px !important;
+    #upgradeModal .price {
+        font-size: 1.95rem !important;
+        margin-bottom: 8px !important;
     }
 
-    .nav-arrow.left { left: 8px !important; }
-    .nav-arrow.right { right: 8px !important; }
-
-    .action-bar, #custom-profile-bar {
-        bottom: 20px !important;
-        padding: 8px 16px !important;
-        gap: 14px !important;
-    }
-}
-
-/* =========================================================================
-   PERBAIKAN KLIK TOMBOL UPGRADE PAKET & LAPISAN MODAL DI MOBILE
-   ========================================================================= */
-.upload-warning:not(.show) {
-    display: none !important;
-    pointer-events: none !important;
-}
-
-@media (max-width: 768px) {
-    /* Naikkan lapisan header & tombol Upgrade Paket agar tidak tertutup elemen lain */
-    header {
-        position: relative !important;
-        z-index: 100 !important;
+    #upgradeModal .price span {
+        font-size: 0.85rem !important;
     }
 
-    #area-upgrade-galeri,
-    #area-upgrade-galeri button,
-    .btn-upgrade-premium {
-        position: relative !important;
-        z-index: 105 !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
+    #upgradeModal .desc {
+        font-size: 0.8rem !important;
+        min-height: auto !important;
+        margin-bottom: 16px !important;
     }
 
-    /* Pastikan modal Upgrade Paket & QRIS muncul paling depan saat tombol ditekan */
-    #upgradeModal.show,
-    #qrisModal.show,
-    .modal-overlay.show {
-        display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        z-index: 10010 !important;
+    #upgradeModal .btn-tier-outline,
+    #upgradeModal .btn-tier-solid {
+        padding: 10px 16px !important;
+        font-size: 0.84rem !important;
+        margin-bottom: 16px !important;
+    }
+
+    #upgradeModal .features li {
+        font-size: 0.8rem !important;
+        margin-bottom: 9px !important;
+        gap: 8px !important;
     }
 }
