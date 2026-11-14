@@ -393,3 +393,55 @@ body.fade-out {
         font-size: 16px !important; /* Mencegah auto-zoom di HP */
     }
 }
+
+/* =========================================================================
+   RESPONSIVE SMARTPHONE (Hanya Header Brand & Animasi Search)
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* 1. Rapatkan jarak kiri-kanan header agar ruang lebih lega */
+    header, .header, .navbar, .top-bar {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        gap: 10px !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+    }
+
+    /* 2. Jaga teks "© By Andhika SP25" tetap 1 baris (tidak turun jadi 3 baris) */
+    header > div:first-child,
+    .header > div:first-child,
+    .navbar > div:first-child,
+    .brand,
+    .logo {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-size: 0.88rem !important;
+    }
+
+    /* 3. Animasi Search tetap jalan, batasi lebar saat melebar agar tidak menabrak teks */
+    #search-input {
+        font-size: 0.85rem !important;
+        color: #ffffff !important;
+    }
+
+    #search-input::placeholder {
+        color: rgba(255, 255, 255, 0.75) !important;
+        opacity: 1 !important;
+    }
+
+    #search-input:focus,
+    #search-input:hover,
+    #search-input:not(:placeholder-shown),
+    .search-box:hover #search-input,
+    .search-box:focus-within #search-input,
+    .search-box.active #search-input,
+    .search-container:hover #search-input,
+    .search-container:focus-within #search-input,
+    .search-container.active #search-input {
+        width: 150px !important;
+        max-width: 44vw !important;
+        padding-left: 14px !important;
+        padding-right: 36px !important;
+    }
+}
