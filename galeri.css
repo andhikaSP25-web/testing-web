@@ -663,15 +663,15 @@ body.dark-mode .pricing-card.professional {
     }
 
     .action-bar, #custom-profile-bar {
-        bottom: 14px !important;
-        right: 14px !important;
-        padding: 6px 14px !important;
-        gap: 12px !important;
+        bottom: 0px !important;
+        right: 0px !important;
+        padding: 5px 12px !important;
+        gap: 5px !important;
     }
 
     .action-btn,
     .action-btn .material-symbols-outlined {
-        font-size: 1.25rem !important;
+        font-size: 1.15rem !important;
     }
 
     /* Penyesuaian Tab Sampah (#tab-trash) di Smartphone */
