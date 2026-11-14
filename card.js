@@ -129,11 +129,12 @@ function inisialisasiEfekGeser() {
     allCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
             const cardBg = card.querySelector('.card').style.backgroundImage;
-            if (mainBg) mainBg.style.backgroundImage = cardBg;
+            if (mainBg && mainBg.style.backgroundImage !== cardBg) {
+                mainBg.style.backgroundImage = cardBg;
+            }
         });
     });
 
-    // Cegah listener container terpasang ganda saat refresh data
     if (sliderContainer.dataset.geserReady === "true") return;
     sliderContainer.dataset.geserReady = "true";
 
@@ -145,16 +146,16 @@ function inisialisasiEfekGeser() {
         }
     });
 
+    // Dukungan Drag Mouse khusus Desktop (tanpa membaca offsetLeft berulang kali)
     let isDown = false;
     let startX = 0;
     let scrollLeft = 0;
 
-    // 1. Dukungan Mouse (Desktop)
     sliderContainer.addEventListener('mousedown', (e) => {
         isDown = true;
         sedangMenggeserKartu = false;
         sliderContainer.style.scrollBehavior = 'auto';
-        startX = e.pageX - sliderContainer.offsetLeft;
+        startX = e.pageX;
         scrollLeft = sliderContainer.scrollLeft;
     });
 
@@ -172,11 +173,18 @@ function inisialisasiEfekGeser() {
     sliderContainer.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - sliderContainer.offsetLeft;
-        const walk = (x - startX) * 2;
+        const walk = (e.pageX - startX) * 1.8;
         if (Math.abs(walk) > 6) sedangMenggeserKartu = true;
         sliderContainer.scrollLeft = scrollLeft - walk;
     });
+
+    // Scroll Roda Mouse Horizontal di Desktop
+    sliderContainer.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            sliderContainer.scrollLeft += e.deltaY;
+        }
+    }, { passive: true });
+
 
     // 2. Dukungan Sentuhan Layar (Mobile / HP)
     sliderContainer.addEventListener('touchstart', (e) => {

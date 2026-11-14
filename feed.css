@@ -257,3 +257,90 @@ body {
 @keyframes putarSpinner {
     to { transform: rotate(360deg); }
 }
+
+/* =========================================================================
+   GLOBAL: HILANGKAN PINGGIRAN HITAM & BLOK SELEKSI TEKS (INDEX, CARD, GALERI)
+   ========================================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100dvh;
+    overflow-x: hidden !important;
+}
+
+/* Pastikan background utama penuh ke seluruh tepi layar tanpa celah hitam */
+#main-bg, .bg-utama, .hero-bg {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Tetap izinkan seleksi & ketik normal pada kolom input (Login & Search) */
+input, textarea {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+}
+/* =========================================================================
+   OPTIMASI PERFORMA RENDERING 60FPS / 120FPS
+   ========================================================================= */
+#main-bg {
+    transform: translateZ(0);
+    will-change: background-image;
+    backface-visibility: hidden;
+}
+
+#wadah-kartu {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: none !important; /* Mencegah patah-patah saat geser cepat */
+    transform: translateZ(0);
+}
+
+.card-wrapper,
+.photo-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Lewati rendering kartu galeri yang belum masuk layar (sangat mempercepat scroll) */
+.photo-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 200px 220px;
+}
+
+/* Kurangi beban blur GPU khusus di layar smartphone */
+@media (max-width: 768px) {
+    *, *::before, *::after {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Ganti transparansi blur dengan warna solid semi-transparan yang ringan */
+    #search-input,
+    .btn-back,
+    .kembali-btn,
+    #total-kartu,
+    .lock-icon {
+        background: rgba(20, 25, 35, 0.72) !important;
+    }
+
+    #auth-modal > div,
+    .modal-content,
+    #custom-toast {
+        background: rgba(15, 23, 42, 0.96) !important;
+    }
+}

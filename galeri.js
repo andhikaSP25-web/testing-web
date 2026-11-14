@@ -268,9 +268,14 @@ function tampilkanKeGrid(file, dataUrl, isDariDatabase = false, isLoved = false)
             card.dataset.filename = file.name;
 
             if (!isVideo) {
-                card.style.backgroundImage = `url('${dataUrl}')`;
+                // Gunakan ukuran s500 untuk thumbnail grid agar scroll super ringan
+                const thumbUrl = dataUrl.includes('lh3.googleusercontent.com')
+                    ? dataUrl.replace('=s1600', '=s500')
+                    : dataUrl;
+                card.style.backgroundImage = `url('${thumbUrl}')`;
             } else {
-                card.innerHTML = `<video src="${dataUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;" muted loop onmouseover="this.play()" onmouseout="this.pause()" preload="metadata"></video>`;
+                // Jangan muat data video sebelum disentuh/dibuka agar tidak menyedot RAM
+                card.innerHTML = `<video src="${dataUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;" muted loop onmouseover="this.play()" onmouseout="this.pause()" preload="none"></video>`;
             }
             card.onclick = function() { openPhoto(this); };
 
@@ -375,13 +380,23 @@ function renderViewer() {
     const imgEl = document.getElementById('full-image'), vidEl = document.getElementById('full-video');
     const dlBtn = document.getElementById('download-btn'), loveBtn = document.getElementById('btn-love');
 
+const mediaFullUrl = media.src.includes('lh3.googleusercontent.com')
+        ? media.src.replace('=s500', '=s1600')
+        : media.src;
+
     if (media.type === 'image') {
-        imgEl.src = media.src; imgEl.style.display = 'block'; vidEl.style.display = 'none'; vidEl.pause();
+        imgEl.src = mediaFullUrl;
+        imgEl.style.display = 'block';
+        vidEl.style.display = 'none';
+        vidEl.pause();
     } else {
-        imgEl.style.display = 'none'; vidEl.style.display = 'block'; vidEl.src = media.src; vidEl.play().catch(e => {});
+        imgEl.style.display = 'none';
+        vidEl.style.display = 'block';
+        vidEl.src = mediaFullUrl;
+        vidEl.play().catch(e => {});
     }
 
-    dlBtn.href = media.src;
+    dlBtn.href = mediaFullUrl;
     loveBtn.classList.toggle('active-love', media.cardRef.classList.contains('loved'));
 
     const leftArr = document.querySelector('.nav-arrow.left'), rightArr = document.querySelector('.nav-arrow.right');
@@ -890,7 +905,7 @@ function renderUIPaket(paket, bintang, tanggalAktif, tema, teksStatus, tingkatDa
         }
         tAktif.innerText = `Aktif Sejak: ${tampilTanggal}`;
     }
-    
+
     // 3. Terapkan STATUS (Murni Manual dari Spreadsheet Kolom K)
     if (tStatus) {
         tStatus.innerText = `Status: ${teksStatus}`;
